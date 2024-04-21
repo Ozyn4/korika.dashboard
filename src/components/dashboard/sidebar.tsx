@@ -1,5 +1,5 @@
+import { ComponentProps } from "react";
 import { cn } from "@/utils/classnames";
-import { ComponentProps, FC } from "react";
 import { Label } from "@/components/ui/label";
 import { GridActiveState, useDashboardStore } from "./store";
 import { useIsDesktop } from "@/components/hooks/use-is-desktop";
