@@ -3,7 +3,7 @@ import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
 import { readParquet } from "parquet-wasm/esm/arrow2";
 
-type GridType = "FoodExpend" | "NonFoodExpend";
+export type GridType = "FoodExpend" | "NonFoodExpend";
 
 type GridZone = keyof typeof ZONE_COLORS;
 
