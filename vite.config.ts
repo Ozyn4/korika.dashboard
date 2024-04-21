@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ["parquet-wasm", "arrow-js-ffi"],
+    exclude: ["parquet-wasm/esm/arrow2"],
   },
   resolve: {
     alias: {

@@ -1,22 +1,20 @@
 import { tableFromIPC } from "apache-arrow";
 import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
-import initWasm, { readParquet } from "parquet-wasm/esm/arrow2";
-
-await initWasm();
+import { readParquet } from "parquet-wasm/esm/arrow2";
 
 type GridType = "FoodExpend" | "NonFoodExpend";
 
 type GridZone = keyof typeof ZONE_COLORS;
 
 const ZONE_COLORS = {
-  "Zona 1": [50, 50, 10],
-  "Zona 2": [50, 50, 20],
-  "Zona 3": [50, 50, 30],
-  "Zona 4": [50, 50, 40],
-  "Zona 5": [50, 50, 50],
-  "Zona 6": [50, 50, 60],
-  "Zona 7": [50, 50, 70],
+  "Zona 1": [172, 250, 112],
+  "Zona 2": [67, 223, 139],
+  "Zona 3": [0, 188, 161],
+  "Zona 4": [0, 151, 163],
+  "Zona 5": [0, 116, 152],
+  "Zona 6": [9, 80, 127],
+  "Zona 7": [41, 47, 86],
 } as const;
 
 export const useGridZone = (type: GridType = "FoodExpend") => {
@@ -24,7 +22,7 @@ export const useGridZone = (type: GridType = "FoodExpend") => {
     queryKey: ["grid"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch("/data/grid.parquet").then((res) => res.arrayBuffer()),
+    queryFn: () => fetch("/maps/grid.parquet").then((res) => res.arrayBuffer()),
   });
 
   if (!data) return;
@@ -48,9 +46,9 @@ export const useGridZone = (type: GridType = "FoodExpend") => {
   for (let i = 0; i < zones.length; ++i) {
     const color = ZONE_COLORS[zones[i] as GridZone];
 
-    colors[i * 3] = color[0] / 100;
-    colors[i * 3 + 1] = color[1] / 100;
-    colors[i * 3 + 2] = color[2] / 100;
+    colors[i * 3] = color[0] / 255;
+    colors[i * 3 + 1] = color[1] / 255;
+    colors[i * 3 + 2] = color[2] / 255;
   }
 
   return new GridCellLayer({

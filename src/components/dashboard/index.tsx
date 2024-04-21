@@ -1,9 +1,10 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { useGridZone } from "./use-grid-zone";
-import { MapboxOverlay } from "@deck.gl/mapbox";
-import { DeckProps, MapViewState } from "@deck.gl/core";
-import MapLibre, { useControl } from "react-map-gl/maplibre";
+import { MapViewState } from "@deck.gl/core";
+import { WasmWrapper } from "@/components/ui/wasm-wrapper";
+import { DeckGLOverlay } from "@/components/ui/maps-overlay";
+import MapLibre, { MapProvider } from "react-map-gl/maplibre";
+import { useGridZone } from "@/components/hooks/use-grid-zone";
 
 const INITIAL_VIEW_STATE: MapViewState = {
   longitude: 107.5315,
@@ -11,20 +12,14 @@ const INITIAL_VIEW_STATE: MapViewState = {
   zoom: 8,
 };
 
-const DeckGLOverlay = (props: DeckProps) => {
-  const overlay = useControl<MapboxOverlay>(() => new MapboxOverlay(props));
-  overlay.setProps(props);
-  return null;
-};
-
-export const Dashboard = () => {
+export const GridMaps = () => {
   const gridLayer = useGridZone("FoodExpend");
 
   return (
     <MapLibre
       attributionControl={false}
+      mapStyle="/maps/style.json"
       initialViewState={INITIAL_VIEW_STATE}
-      mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
       style={{
         top: 0,
         left: 0,
@@ -35,5 +30,15 @@ export const Dashboard = () => {
     >
       <DeckGLOverlay controller layers={[gridLayer]} />
     </MapLibre>
+  );
+};
+
+export const Dashboard = () => {
+  return (
+    <WasmWrapper>
+      <MapProvider>
+        <GridMaps />
+      </MapProvider>
+    </WasmWrapper>
   );
 };
