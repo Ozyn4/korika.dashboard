@@ -1,28 +1,54 @@
 import { FC } from "react";
 import { useDashboardStore } from "./store";
-import { GridElevation, useGridMaps } from "@/components/maps/use-grid-maps";
+import {
+  GridElevation,
+  GridFillType,
+  useGridMaps,
+} from "@/components/maps/use-grid-maps";
 import {
   SingleMaps,
   SplittedMaps,
   DeckGLOverlay,
 } from "@/components/maps/maps";
+import { Label } from "@radix-ui/react-label";
 
-const FoodGridMaps: FC<{ elevation?: GridElevation }> = ({ elevation }) => {
-  const gridLayer = useGridMaps("FoodExpend", elevation);
+const GridTooltip = () => {
+  const tooltip = useDashboardStore((state) => state.tooltip);
 
-  return <DeckGLOverlay controller layers={[gridLayer]} />;
+  if (!tooltip) return null;
+
+  return (
+    <div
+      style={{ left: tooltip.x, top: tooltip.y }}
+      className="-translate-x-[50%] -translate-y-full pointer-events-none absolute z-[100] w-64 cursor-pointer rounded-sm border bg-background p-4 shadow-sm"
+    >
+      {Object.keys(tooltip.data)
+        .filter((key) => key !== "geometry")
+        .map((key) => (
+          <div key={key} className="flex flex-row items-center justify-between">
+            <Label className="font-bold">{key}</Label>
+            <Label>{tooltip.data[key]}</Label>
+          </div>
+        ))}
+    </div>
+  );
 };
 
-const NonFoodGridMaps: FC<{ elevation?: GridElevation }> = ({ elevation }) => {
-  const gridLayer = useGridMaps("NonFoodExpend", elevation);
+interface GridMapsProps {
+  fill: GridFillType;
+  elevation?: GridElevation;
+}
+
+const GridLayer: FC<GridMapsProps> = ({ fill, elevation }) => {
+  const gridLayer = useGridMaps(fill, elevation);
 
   return <DeckGLOverlay controller layers={[gridLayer]} />;
 };
 
 const CompareGridMaps: FC<{ elevation?: GridElevation }> = ({ elevation }) => (
   <SplittedMaps
-    left={<FoodGridMaps elevation={elevation} />}
-    right={<NonFoodGridMaps elevation={elevation} />}
+    left={<GridLayer fill="FoodExpend" elevation={elevation} />}
+    right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
   />
 );
 
@@ -36,11 +62,8 @@ export const GridMaps = () => {
 
   return (
     <SingleMaps>
-      {active.fill === "FoodExpend" ? (
-        <FoodGridMaps elevation={active.elevation} />
-      ) : (
-        <NonFoodGridMaps elevation={active.elevation} />
-      )}
+      <GridTooltip />
+      <GridLayer fill={active.fill} elevation={active.elevation} />
     </SingleMaps>
   );
 };

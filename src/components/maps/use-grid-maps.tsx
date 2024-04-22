@@ -2,6 +2,7 @@ import { tableFromIPC } from "apache-arrow";
 import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
 import { readParquet } from "parquet-wasm/esm/arrow2";
+import { useDashboardStore } from "../dashboard/store";
 
 export type GridFillType = "FoodExpend" | "NonFoodExpend";
 
@@ -67,12 +68,30 @@ export const useGridMaps = (
   }
 
   return new GridCellLayer({
+    cellSize: 1010, // add 10 meters for more accuracy
+    pickable: true,
+    extruded: !!elevation,
     elevationScale: ELEVATION_SCALE[elevation!] || 1,
+    onHover: (info) => {
+      if (info.index === -1)
+        return useDashboardStore.setState({ tooltip: undefined });
+
+      return useDashboardStore.setState({
+        tooltip: {
+          x: info.x,
+          y: info.y,
+          data: table.get(info.index)?.toJSON() as Record<
+            string,
+            number | string
+          >,
+        },
+      });
+    },
     data: {
       length: table.numRows,
       attributes: {
-        getPosition: { value: flatCoordinateArray, size: 2 },
         getFillColor: { value: colors, size: 3 },
+        getPosition: { value: flatCoordinateArray, size: 2 },
         ...(elevation && {
           getElevation: {
             value: new Float32Array(table.getChild(elevation)?.data[0].values),
@@ -80,7 +99,5 @@ export const useGridMaps = (
         }),
       },
     },
-    extruded: !!elevation,
-    cellSize: 1010, // add 10 meters for more accuracy
   });
 };

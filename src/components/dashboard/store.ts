@@ -16,6 +16,11 @@ type ActiveState = GridActiveState | ClusterActiveState;
 
 interface DashboardState {
   active: ActiveState;
+  tooltip?: {
+    x: number;
+    y: number;
+    data: Record<string, number | string>;
+  };
 }
 
 export const useDashboardStore = create<DashboardState>()(() => ({
