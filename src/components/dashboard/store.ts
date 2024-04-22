@@ -1,8 +1,10 @@
 import { create } from "zustand";
+import { GridElevation } from "@/components/maps/use-grid-maps";
 
 export type GridActiveState = {
   type: "grid";
-  view: "FoodExpend" | "NonFoodExpend" | "Compare";
+  fill: "FoodExpend" | "NonFoodExpend" | "Compare";
+  elevation?: GridElevation;
 };
 
 export type ClusterActiveState = {
@@ -19,6 +21,6 @@ interface DashboardState {
 export const useDashboardStore = create<DashboardState>()(() => ({
   active: {
     type: "grid",
-    view: "FoodExpend",
+    fill: "FoodExpend",
   },
 }));

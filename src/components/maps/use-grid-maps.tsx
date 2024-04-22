@@ -3,7 +3,9 @@ import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
 import { readParquet } from "parquet-wasm/esm/arrow2";
 
-export type GridType = "FoodExpend" | "NonFoodExpend";
+export type GridFillType = "FoodExpend" | "NonFoodExpend";
+
+export type GridElevation = keyof typeof ELEVATION_SCALE;
 
 type GridZone = keyof typeof ZONE_COLORS;
 
@@ -17,7 +19,20 @@ const ZONE_COLORS = {
   "Zona 7": [41, 47, 86],
 } as const;
 
-export const useGridZone = (type: GridType = "FoodExpend") => {
+const ELEVATION_SCALE = {
+  ES_Distance: 1,
+  JHS_Distance: 1,
+  SHS_Distance: 1,
+  Hospital_Distance: 0.4,
+  PublicHealth_Distance: 0.5,
+  Elevation: 10,
+  Slope: 250,
+} as const;
+
+export const useGridMaps = (
+  fill: GridFillType = "FoodExpend",
+  elevation?: GridElevation,
+) => {
   const { data } = useQuery({
     queryKey: ["grid"],
     gcTime: Infinity,
@@ -39,7 +54,7 @@ export const useGridZone = (type: GridType = "FoodExpend") => {
   /**
    * we calculate the color and save it to float array
    */
-  const zones = table.getChild(type)?.toArray();
+  const zones = table.getChild(fill)?.toArray();
 
   const colors = new Float32Array(zones.length * 3);
 
@@ -52,14 +67,20 @@ export const useGridZone = (type: GridType = "FoodExpend") => {
   }
 
   return new GridCellLayer({
+    elevationScale: ELEVATION_SCALE[elevation!] || 1,
     data: {
       length: table.numRows,
       attributes: {
         getPosition: { value: flatCoordinateArray, size: 2 },
         getFillColor: { value: colors, size: 3 },
+        ...(elevation && {
+          getElevation: {
+            value: new Float32Array(table.getChild(elevation)?.data[0].values),
+          },
+        }),
       },
     },
-    extruded: false,
+    extruded: !!elevation,
     cellSize: 1010, // add 10 meters for more accuracy
   });
 };

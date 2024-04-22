@@ -1,25 +1,29 @@
+import { FC } from "react";
 import { useDashboardStore } from "./store";
-import { useGridZone } from "@/components/maps/use-grid-zone";
+import { GridElevation, useGridMaps } from "@/components/maps/use-grid-maps";
 import {
   SingleMaps,
   SplittedMaps,
   DeckGLOverlay,
 } from "@/components/maps/maps";
 
-const NonFoodGridMaps = () => {
-  const gridLayer = useGridZone("NonFoodExpend");
+const FoodGridMaps: FC<{ elevation?: GridElevation }> = ({ elevation }) => {
+  const gridLayer = useGridMaps("FoodExpend", elevation);
 
   return <DeckGLOverlay controller layers={[gridLayer]} />;
 };
 
-const FoodGridMaps = () => {
-  const gridLayer = useGridZone("FoodExpend");
+const NonFoodGridMaps: FC<{ elevation?: GridElevation }> = ({ elevation }) => {
+  const gridLayer = useGridMaps("NonFoodExpend", elevation);
 
   return <DeckGLOverlay controller layers={[gridLayer]} />;
 };
 
-export const CompareGridMaps = () => (
-  <SplittedMaps left={<FoodGridMaps />} right={<NonFoodGridMaps />} />
+const CompareGridMaps: FC<{ elevation?: GridElevation }> = ({ elevation }) => (
+  <SplittedMaps
+    left={<FoodGridMaps elevation={elevation} />}
+    right={<NonFoodGridMaps elevation={elevation} />}
+  />
 );
 
 export const GridMaps = () => {
@@ -27,11 +31,16 @@ export const GridMaps = () => {
 
   if (active.type !== "grid") return;
 
-  if (active.view === "Compare") return <CompareGridMaps />;
+  if (active.fill === "Compare")
+    return <CompareGridMaps elevation={active.elevation} />;
 
   return (
     <SingleMaps>
-      {active.view === "FoodExpend" ? <FoodGridMaps /> : <NonFoodGridMaps />}
+      {active.fill === "FoodExpend" ? (
+        <FoodGridMaps elevation={active.elevation} />
+      ) : (
+        <NonFoodGridMaps elevation={active.elevation} />
+      )}
     </SingleMaps>
   );
 };

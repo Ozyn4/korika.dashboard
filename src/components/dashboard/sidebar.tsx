@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, FC, ReactNode } from "react";
 import { cn } from "@/utils/classnames";
 import { Label } from "@/components/ui/label";
 import { GridActiveState, useDashboardStore } from "./store";
@@ -6,6 +6,13 @@ import { useIsDesktop } from "@/components/hooks/use-is-desktop";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import {
+  IconAmbulance,
+  IconBackpack,
+  IconBooks,
+  IconBuildingHospital,
+  IconChartLine,
+  IconCircleOff,
+  IconMountain,
   IconSchool,
   IconSoccerField,
   IconToolsKitchen,
@@ -29,7 +36,7 @@ const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
         <Label className="font-bold text-xs">Zona 1</Label>
         <div className="relative flex flex-1 items-center justify-center">
           <Label className="z-[100] bg-background px-2 text-xs">
-            {active.view}
+            {active.fill}
           </Label>
           <div className="absolute w-full border-foreground/50 border-b border-dashed" />
         </div>
@@ -47,44 +54,130 @@ const GridDescription = () => (
   </p>
 );
 
-const GridViewSelector = () => {
+const GridSelector = () => {
   const active = useDashboardStore((state) => state.active as GridActiveState);
 
+  type ToggleGroupCustomItemProps = {
+    value?: string;
+    label: string;
+    icon: ReactNode;
+  };
+
+  const ToggleGroupCustomItem: FC<ToggleGroupCustomItemProps> = (props) => (
+    <ToggleGroupItem asChild value={props.value!} aria-label={props.label}>
+      <div className="flex h-16 max-w-full cursor-pointer flex-col items-center justify-center gap-2">
+        {props.icon}
+        <Label className="cursor-pointer text-center text-xs">
+          {props.label}
+        </Label>
+      </div>
+    </ToggleGroupItem>
+  );
+
   return (
-    <ToggleGroup
-      type="single"
-      value={active.view}
-      defaultValue="FoodExpend"
-      className="grid grid-cols-3"
-      onValueChange={(value) =>
-        useDashboardStore.setState({
-          active: { type: "grid", view: value as (typeof active)["view"] },
-        })
-      }
-    >
-      <ToggleGroupItem asChild value="FoodExpend" aria-label="Food Expend">
-        <div className="flex h-16 max-w-full cursor-pointer flex-col items-center justify-center gap-2">
-          <IconToolsKitchen className="stroke-1" />
-          <Label className="cursor-pointer">Food</Label>
-        </div>
-      </ToggleGroupItem>
-      <ToggleGroupItem
-        asChild
-        value="NonFoodExpend"
-        aria-label="Non Food Expend"
-      >
-        <div className="flex h-16 max-w-full cursor-pointer flex-col items-center justify-center gap-2">
-          <IconSchool className="stroke-1" />
-          <Label className="cursor-pointer">Non Food</Label>
-        </div>
-      </ToggleGroupItem>
-      <ToggleGroupItem asChild value="Compare" aria-label="Compare Mode">
-        <div className="flex h-16 max-w-full cursor-pointer flex-col items-center justify-center gap-2">
-          <IconSoccerField className="stroke-1" />
-          <Label className="cursor-pointer">Compare</Label>
-        </div>
-      </ToggleGroupItem>
-    </ToggleGroup>
+    <div className="flex flex-col gap-y-8 py-2">
+      <div className="flex flex-col gap-4">
+        <Label className="font-bold">Fill By :</Label>
+        <ToggleGroup
+          type="single"
+          value={active.fill}
+          defaultValue="FoodExpend"
+          className="grid grid-cols-3"
+          onValueChange={(value) =>
+            useDashboardStore.setState((state) => ({
+              active: {
+                ...state.active,
+                fill: value as (typeof active)["fill"],
+                type: "grid",
+              },
+            }))
+          }
+        >
+          {[
+            {
+              value: "FoodExpend",
+              label: "Food Expend",
+              icon: <IconToolsKitchen className="stroke-1" />,
+            },
+            {
+              value: "NonFoodExpend",
+              label: "Non Food Expend",
+              icon: <IconSchool className="stroke-1" />,
+            },
+            {
+              value: "Compare",
+              label: "Compare Mode",
+              icon: <IconSoccerField className="stroke-1" />,
+            },
+          ].map((i) => (
+            <ToggleGroupCustomItem key={i.value} {...i} />
+          ))}
+        </ToggleGroup>
+      </div>
+      <div className="flex flex-col gap-4">
+        <Label className="font-bold">Elevated Maps By :</Label>
+        <ToggleGroup
+          type="single"
+          value={active.elevation}
+          className="grid grid-cols-3"
+          onValueChange={(value) =>
+            useDashboardStore.setState((state) => ({
+              active: {
+                elevation: value as (typeof active)["elevation"],
+                fill: (state.active as typeof active).fill,
+                type: "grid",
+              },
+            }))
+          }
+        >
+          {[
+            {
+              value: undefined,
+              label: "None",
+              icon: <IconCircleOff className="stroke-1" />,
+            },
+            {
+              value: "Elevation",
+              label: "Elevation",
+              icon: <IconMountain className="stroke-1" />,
+            },
+            {
+              value: "Slope",
+              label: "Slope",
+              icon: <IconChartLine className="stroke-1" />,
+            },
+            {
+              value: "Hospital_Distance",
+              label: "Hospital",
+              icon: <IconBuildingHospital className="stroke-1" />,
+            },
+            {
+              value: "PublicHealth_Distance",
+              label: "Public Health",
+              icon: <IconAmbulance className="stroke-1" />,
+            },
+            {
+              value: "ES_Distance",
+              label: "Elementary Schools",
+              icon: <IconBackpack className="stroke-1" />,
+            },
+            {
+              value: "JHS_Distance",
+              label: "Junior High Schools",
+              icon: <IconBooks className="stroke-1" />,
+            },
+            {
+              value: "SHS_Distance",
+              label: "Senior High Schools",
+              icon: <IconSchool className="stroke-1" />,
+            },
+            // "ES_Distance" | "JHS_Distance" | "SHS_Distance" | "Hospital_Distance" | "PublicHealth_Distance" | "Elevation" | "Slope" | undefined
+          ].map((i) => (
+            <ToggleGroupCustomItem key={i.value} {...i} />
+          ))}
+        </ToggleGroup>
+      </div>
+    </div>
   );
 };
 
@@ -102,7 +195,7 @@ const SidebarContent = () => {
     <div className="space-y-2 p-2">
       <GridSwatch />
       <GridDescription />
-      <GridViewSelector />
+      <GridSelector />
     </div>
   );
 };
