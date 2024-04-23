@@ -1,31 +1,39 @@
 import { create } from "zustand";
-import { GridElevation } from "@/components/maps/use-grid-maps";
+import {
+  GridElevation,
+  GridFillType,
+  GridHoverData,
+} from "@/components/maps/use-grid-layer";
 
-export type GridActiveState = {
-  type: "grid";
-  fill: "FoodExpend" | "NonFoodExpend" | "Compare";
+export type GridAnalysisState = {
+  analysis: "grid";
+  fill: GridFillType | "Compare";
   elevation?: GridElevation;
 };
 
-export type ClusterActiveState = {
-  type: "cluster";
-  view: "socials" | "green";
+export type ClusterAnalysisState = {
+  analysis: "cluster";
+  clusters: "socioeconomic" | "geographic";
 };
 
-type ActiveState = GridActiveState | ClusterActiveState;
+type ActiveAnalysisState = GridAnalysisState | ClusterAnalysisState;
 
 interface DashboardState {
-  active: ActiveState;
-  tooltip?: {
-    x: number;
-    y: number;
-    data: Record<string, number | string>;
-  };
+  active: ActiveAnalysisState;
+  tooltip?: GridHoverData;
+  changeActiveAnalysis: (analysis: ActiveAnalysisState["analysis"]) => void;
 }
 
-export const useDashboardStore = create<DashboardState>()(() => ({
+export const useDashboardStore = create<DashboardState>()((set) => ({
   active: {
-    type: "grid",
+    analysis: "grid",
     fill: "FoodExpend",
   },
+  changeActiveAnalysis: (analysis) =>
+    set({
+      active:
+        analysis === "grid"
+          ? { analysis: "grid", fill: "FoodExpend" }
+          : { analysis: "cluster", clusters: "socioeconomic" },
+    }),
 }));

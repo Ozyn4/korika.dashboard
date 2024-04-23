@@ -2,15 +2,14 @@ import { tableFromIPC } from "apache-arrow";
 import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
 import { readParquet } from "parquet-wasm/esm/arrow2";
-import { useDashboardStore } from "../dashboard/store";
 
 export type GridFillType = "FoodExpend" | "NonFoodExpend";
 
 export type GridElevation = keyof typeof ELEVATION_SCALE;
 
-type GridZone = keyof typeof ZONE_COLORS;
+export type GridZone = keyof typeof ZONE_COLORS;
 
-const ZONE_COLORS = {
+export const ZONE_COLORS = {
   "Zona 1": [172, 250, 112],
   "Zona 2": [67, 223, 139],
   "Zona 3": [0, 188, 161],
@@ -20,20 +19,32 @@ const ZONE_COLORS = {
   "Zona 7": [41, 47, 86],
 } as const;
 
-const ELEVATION_SCALE = {
+export const ELEVATION_SCALE = {
+  Slope: 250,
+  Elevation: 10,
   ES_Distance: 1,
   JHS_Distance: 1,
   SHS_Distance: 1,
   Hospital_Distance: 0.4,
   PublicHealth_Distance: 0.5,
-  Elevation: 10,
-  Slope: 250,
 } as const;
 
-export const useGridMaps = (
-  fill: GridFillType = "FoodExpend",
-  elevation?: GridElevation,
-) => {
+export interface GridHoverData {
+  position: { x: number; y: number };
+  data: Record<string, number | string>;
+}
+
+interface GridLayerProps {
+  fill: GridFillType;
+  elevation?: GridElevation;
+  onGridHover?: (data: GridHoverData | undefined) => void;
+}
+
+export const useGridLayer = ({
+  fill = "FoodExpend",
+  elevation,
+  onGridHover,
+}: GridLayerProps) => {
   const { data } = useQuery({
     queryKey: ["grid"],
     gcTime: Infinity,
@@ -73,18 +84,14 @@ export const useGridMaps = (
     extruded: !!elevation,
     elevationScale: ELEVATION_SCALE[elevation!] || 1,
     onHover: (info) => {
-      if (info.index === -1)
-        return useDashboardStore.setState({ tooltip: undefined });
+      if (info.index === -1) return onGridHover?.(undefined);
 
-      return useDashboardStore.setState({
-        tooltip: {
-          x: info.x,
-          y: info.y,
-          data: table.get(info.index)?.toJSON() as Record<
-            string,
-            number | string
-          >,
-        },
+      return onGridHover?.({
+        position: { x: info.x, y: info.y },
+        data: table.get(info.index)?.toJSON() as Record<
+          string,
+          number | string
+        >,
       });
     },
     data: {
