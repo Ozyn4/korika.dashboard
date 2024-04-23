@@ -16,7 +16,7 @@ export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
   const gridLayer = useGridLayer({
     fill,
     elevation,
-    onGridHover: (tooltip) => useDashboardStore.setState({ tooltip }),
+    onHover: (tooltip) => useDashboardStore.setState({ tooltip }),
   });
 
   return <DeckGLOverlay controller layers={[gridLayer]} />;

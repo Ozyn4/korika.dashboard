@@ -1,7 +1,7 @@
 import { useDashboardStore } from "./store";
 import { Label } from "@/components/ui/label";
 
-export const GridTooltip = () => {
+export const Tooltip = () => {
   const tooltip = useDashboardStore((state) => state.tooltip);
 
   if (!tooltip) return null;

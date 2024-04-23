@@ -37,13 +37,13 @@ export interface GridHoverData {
 interface GridLayerProps {
   fill: GridFillType;
   elevation?: GridElevation;
-  onGridHover?: (data: GridHoverData | undefined) => void;
+  onHover?: (data: GridHoverData | undefined) => void;
 }
 
 export const useGridLayer = ({
   fill = "FoodExpend",
   elevation,
-  onGridHover,
+  onHover,
 }: GridLayerProps) => {
   const { data } = useQuery({
     queryKey: ["grid"],
@@ -84,9 +84,9 @@ export const useGridLayer = ({
     extruded: !!elevation,
     elevationScale: ELEVATION_SCALE[elevation!] || 1,
     onHover: (info) => {
-      if (info.index === -1) return onGridHover?.(undefined);
+      if (info.index === -1) return onHover?.(undefined);
 
-      return onGridHover?.({
+      return onHover?.({
         position: { x: info.x, y: info.y },
         data: table.get(info.index)?.toJSON() as Record<
           string,

@@ -1,6 +1,10 @@
 import { cn } from "@/utils/classnames";
 import { Label } from "@/components/ui/label";
-import { GridAnalysisState, useDashboardStore } from "./store";
+import {
+  ClusterAnalysisState,
+  GridAnalysisState,
+  useDashboardStore,
+} from "./store";
 import { useIsDesktop } from "@/components/hooks/use-is-desktop";
 import { ComponentProps, FC, ReactNode, forwardRef } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -36,12 +40,12 @@ const ToggleGroupCustomItem: FC<ToggleGroupCustomItemProps> = (props) => (
   </ToggleGroupItem>
 );
 
-const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
+const GridSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
   const active = useDashboardStore((s) => s.active as GridAnalysisState);
 
   return (
     <div className={cn("flex flex-col gap-2", className)} {...props}>
-      <div className="grid w-full grid-cols-7">
+      <div className="grid max-h-4 w-full grid-cols-7 overflow-hidden rounded-sm">
         <div className="flex aspect-square bg-[#acfa70]" />
         <div className="flex aspect-square bg-[#43df8b]" />
         <div className="flex aspect-square bg-[#00bca1]" />
@@ -185,6 +189,86 @@ const GridSelector = () => {
   );
 };
 
+const ClusterSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
+  const active = useDashboardStore((s) => s.active as ClusterAnalysisState);
+
+  return (
+    <div className={cn("flex flex-col gap-2",className)} {...props}>
+      <div className="max-h-4 overflow-hidden rounded-sm">
+        {active.clusters === "Geographic" && (
+          <div className="grid grid-cols-3">
+            <div className="flex aspect-square bg-[#f77a52]" />
+            <div className="flex aspect-square bg-[#21c9ff]" />
+            <div className="flex aspect-square bg-[#f2d03b]" />
+          </div>
+        )}
+        {active.clusters === "Socioeconomic" && (
+          <div className="grid grid-cols-4">
+            <div className="flex aspect-square bg-[#f77a52]" />
+            <div className="flex aspect-square bg-[#bba4ff]" />
+            <div className="flex aspect-square bg-[#00dad6]" />
+            <div className="flex aspect-square bg-[#f2d03b]" />
+          </div>
+        )}
+      </div>
+      <div className="flex items-center justify-between gap-2 px-1 py-1">
+        <Label className="font-bold text-xs">Cluster 1</Label>
+        <div className="relative flex flex-1 items-center justify-center">
+          <Label className="z-[100] bg-background px-2 text-xs">
+            {active.clusters}
+          </Label>
+          <div className="absolute w-full border-foreground/50 border-b border-dashed" />
+        </div>
+        <Label className="font-bold text-xs">
+          {active.clusters === "Geographic" ? "Cluster 3" : "Cluster 4"}
+        </Label>
+      </div>
+    </div>
+  );
+};
+
+const ClusterSelector = () => {
+  const active = useDashboardStore((s) => s.active as ClusterAnalysisState);
+
+  const FILL_TYPE_CONTROL = [
+    {
+      value: "Geographic",
+      label: "Geographic Analysis",
+      icon: <IconMountain className="stroke-1" />,
+    },
+    {
+      value: "Socioeconomic",
+      label: "Socioeconomic Analysis",
+      icon: <IconSchool className="stroke-1" />,
+    },
+  ];
+
+  return (
+    <div className="flex flex-col gap-y-8 py-2">
+      <div className="flex flex-col gap-4">
+        <ToggleGroup
+          type="single"
+          value={active.clusters}
+          defaultValue="FoodExpend"
+          className="grid grid-cols-2"
+          onValueChange={(value) =>
+            useDashboardStore.setState({
+              active: {
+                clusters: value as (typeof active)["clusters"],
+                analysis: "cluster",
+              },
+            })
+          }
+        >
+          {FILL_TYPE_CONTROL.map((i) => (
+            <ToggleGroupCustomItem key={i.value} {...i} />
+          ))}
+        </ToggleGroup>
+      </div>
+    </div>
+  );
+};
+
 /**
  * return control content based on active state
  *
@@ -215,7 +299,10 @@ const ControlsContent = () => {
           </div>
         </TabsContent>
         <TabsContent value="cluster">
-          <div className="space-y-2 px-4"></div>
+          <div className="space-y-2 px-2">
+            <ClusterSwatch />
+            <ClusterSelector />
+          </div>
         </TabsContent>
       </Tabs>
     </div>
@@ -232,6 +319,9 @@ const MobileControlsTrigger = forwardRef<HTMLDivElement>((_props, ref) => {
     <div ref={ref} className="absolute bottom-5 left-0 z-[1000] w-full p-2">
       {active.analysis === "grid" && (
         <GridSwatch className="m-auto max-w-xs flex-1 overflow-hidden rounded-sm rounded-t-sm bg-white" />
+      )}
+      {active.analysis === "cluster" && (
+        <ClusterSwatch className="m-auto max-w-xs flex-1 overflow-hidden rounded-sm rounded-t-sm bg-white" />
       )}
     </div>
   );

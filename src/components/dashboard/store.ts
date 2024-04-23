@@ -4,6 +4,7 @@ import {
   GridFillType,
   GridHoverData,
 } from "@/components/maps/use-grid-layer";
+import { Cluster } from "@/components/maps/use-cluster-layer";
 
 export type GridAnalysisState = {
   analysis: "grid";
@@ -13,7 +14,7 @@ export type GridAnalysisState = {
 
 export type ClusterAnalysisState = {
   analysis: "cluster";
-  clusters: "socioeconomic" | "geographic";
+  clusters: Cluster;
 };
 
 type ActiveAnalysisState = GridAnalysisState | ClusterAnalysisState;
@@ -34,6 +35,6 @@ export const useDashboardStore = create<DashboardState>()((set) => ({
       active:
         analysis === "grid"
           ? { analysis: "grid", fill: "FoodExpend" }
-          : { analysis: "cluster", clusters: "socioeconomic" },
+          : { analysis: "cluster", clusters: "Geographic" },
     }),
 }));
