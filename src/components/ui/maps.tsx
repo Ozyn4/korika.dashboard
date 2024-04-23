@@ -1,10 +1,9 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { DeckProps } from "@deck.gl/core";
 import MapLibre from "react-map-gl/maplibre";
 import { MapboxOverlay } from "@deck.gl/mapbox";
-import { INITIAL_VIEW_STATE } from "./constant";
 import { useControl } from "react-map-gl/maplibre";
+import { DeckProps, MapViewState } from "@deck.gl/core";
 import { useMeasure } from "@/components/hooks/use-measure";
 import {
   FC,
@@ -31,7 +30,6 @@ export const SingleMaps: FC<
   <MapLibre
     attributionControl={false}
     mapStyle="/maps/style.json"
-    initialViewState={INITIAL_VIEW_STATE}
     style={{
       top: 0,
       left: 0,
@@ -49,14 +47,19 @@ export const SingleMaps: FC<
 interface SplittedMapsProps {
   left: ReactNode;
   right: ReactNode;
+  viewState: MapViewState;
 }
 
-export const SplittedMaps: FC<SplittedMapsProps> = ({ left, right }) => {
+export const SplittedMaps: FC<SplittedMapsProps> = ({
+  left,
+  right,
+  viewState: initialViewState = {},
+}) => {
   const [leftRef, leftSize] = useMeasure<HTMLDivElement | null>();
 
   const [rightRef, rightSize] = useMeasure<HTMLDivElement | null>();
 
-  const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
+  const [viewState, setViewState] = useState(initialViewState);
 
   /**
    * Two maps could be firing 'move' events at the same time, if the user interacts with one

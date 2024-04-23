@@ -1,10 +1,11 @@
 import { cn } from "@/utils/classnames";
 import { Label } from "@/components/ui/label";
 import {
-  ClusterAnalysisState,
-  GridAnalysisState,
-  useDashboardStore,
-} from "./store";
+  GEOGRAPHIC_CLUSTER_DESCRIPTION,
+  GRID_ANALYSIS_DESCRIPTION,
+  SOCIOECONOMIC_CLUSTER_DESCRIPTION,
+} from "./constant";
+import { GridZone } from "@/components/analysis/use-grid-layer";
 import { useIsDesktop } from "@/components/hooks/use-is-desktop";
 import { ComponentProps, FC, ReactNode, forwardRef } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -22,6 +23,21 @@ import {
   IconToolsKitchen,
   IconBuildingHospital,
 } from "@tabler/icons-react";
+import {
+  ClusterAnalysisState,
+  GridAnalysisState,
+  useDashboardStore,
+} from "./store";
+import {
+  Cluster,
+  GeographicCluster,
+  SocioeconomicCluster,
+} from "@/components/analysis/use-cluster-layer";
+import {
+  GEOGRAPHIC_CLUSTER_COLOR,
+  GRID_ZONE_COLORS,
+  SOCIOECONOMIC_CLUSTER_COLOR,
+} from "@/components/analysis/color";
 
 type ToggleGroupCustomItemProps = {
   value?: string;
@@ -46,13 +62,15 @@ const GridSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
   return (
     <div className={cn("flex flex-col gap-2", className)} {...props}>
       <div className="grid max-h-4 w-full grid-cols-7 overflow-hidden rounded-sm">
-        <div className="flex aspect-square bg-[#acfa70]" />
-        <div className="flex aspect-square bg-[#43df8b]" />
-        <div className="flex aspect-square bg-[#00bca1]" />
-        <div className="flex aspect-square bg-[#0097a3]" />
-        <div className="flex aspect-square bg-[#007498]" />
-        <div className="flex aspect-square bg-[#09507f]" />
-        <div className="flex aspect-square bg-[#292f56]" />
+        {Object.keys(GRID_ZONE_COLORS).map((z) => (
+          <div
+            key={z}
+            className="flex aspect-square"
+            style={{
+              backgroundColor: `rgb(${GRID_ZONE_COLORS[z as GridZone]})`,
+            }}
+          />
+        ))}
       </div>
       <div className="flex items-center justify-between gap-2 px-1 py-1">
         <Label className="font-bold text-xs">Zona 1</Label>
@@ -69,11 +87,7 @@ const GridSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
 };
 
 const GridDescription = () => (
-  <p className="text-sm">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum sed fuga, ullam
-    ducimus tempore molestias a inventore harum iure dolore repellendus non amet
-    laboriosam mollitia debitis odit numquam officiis commodi.
-  </p>
+  <p className="text-sm">{GRID_ANALYSIS_DESCRIPTION}</p>
 );
 
 const GridSelector = () => {
@@ -193,21 +207,36 @@ const ClusterSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
   const active = useDashboardStore((s) => s.active as ClusterAnalysisState);
 
   return (
-    <div className={cn("flex flex-col gap-2",className)} {...props}>
+    <div className={cn("flex flex-col gap-2", className)} {...props}>
       <div className="max-h-4 overflow-hidden rounded-sm">
         {active.clusters === "Geographic" && (
           <div className="grid grid-cols-3">
-            <div className="flex aspect-square bg-[#f77a52]" />
-            <div className="flex aspect-square bg-[#21c9ff]" />
-            <div className="flex aspect-square bg-[#f2d03b]" />
+            {Object.keys(GEOGRAPHIC_CLUSTER_COLOR).map((c) => (
+              <div
+                key={c}
+                className="flex aspect-square"
+                style={{
+                  backgroundColor: `rgb(${
+                    GEOGRAPHIC_CLUSTER_COLOR[c as GeographicCluster]
+                  })`,
+                }}
+              />
+            ))}
           </div>
         )}
         {active.clusters === "Socioeconomic" && (
           <div className="grid grid-cols-4">
-            <div className="flex aspect-square bg-[#f77a52]" />
-            <div className="flex aspect-square bg-[#bba4ff]" />
-            <div className="flex aspect-square bg-[#00dad6]" />
-            <div className="flex aspect-square bg-[#f2d03b]" />
+            {Object.keys(SOCIOECONOMIC_CLUSTER_COLOR).map((c) => (
+              <div
+                key={c}
+                className="flex aspect-square"
+                style={{
+                  backgroundColor: `rgb(${
+                    SOCIOECONOMIC_CLUSTER_COLOR[c as SocioeconomicCluster]
+                  })`,
+                }}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -223,6 +252,54 @@ const ClusterSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
           {active.clusters === "Geographic" ? "Cluster 3" : "Cluster 4"}
         </Label>
       </div>
+    </div>
+  );
+};
+
+const ClusterDescription: FC<{ cluster: Cluster }> = ({ cluster }) => {
+  const DescriptionItem = ({
+    color,
+    cluster,
+    description,
+  }: {
+    cluster: string;
+    description: string;
+    color: number[] | Uint8Array;
+  }) => (
+    <div className="text-xs">
+      <div className="flex flex-row items-center justify-between border-b py-0.5">
+        <Label className="font-bold text-xs">{cluster}</Label>
+        <div
+          className="aspect-square w-4"
+          style={{ backgroundColor: `rgb(${color})` }}
+        />
+      </div>
+      <div className="text-muted-foreground">{description}</div>
+    </div>
+  );
+
+  return (
+    <div className="space-y-2">
+      {cluster === "Geographic" &&
+        Object.keys(GEOGRAPHIC_CLUSTER_DESCRIPTION).map((c) => (
+          <DescriptionItem
+            key={c}
+            cluster={c}
+            color={GEOGRAPHIC_CLUSTER_COLOR[c as GeographicCluster]}
+            description={GEOGRAPHIC_CLUSTER_DESCRIPTION[c as GeographicCluster]}
+          />
+        ))}
+      {cluster === "Socioeconomic" &&
+        Object.keys(SOCIOECONOMIC_CLUSTER_DESCRIPTION).map((c) => (
+          <DescriptionItem
+            key={c}
+            cluster={c}
+            color={SOCIOECONOMIC_CLUSTER_COLOR[c as GeographicCluster]}
+            description={
+              SOCIOECONOMIC_CLUSTER_DESCRIPTION[c as GeographicCluster]
+            }
+          />
+        ))}
     </div>
   );
 };
@@ -302,6 +379,9 @@ const ControlsContent = () => {
           <div className="space-y-2 px-2">
             <ClusterSwatch />
             <ClusterSelector />
+            <ClusterDescription
+              cluster={(active as ClusterAnalysisState).clusters}
+            />
           </div>
         </TabsContent>
       </Tabs>

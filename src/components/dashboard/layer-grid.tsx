@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { useDashboardStore } from "./store";
-import { SplittedMaps, DeckGLOverlay } from "@/components/maps/maps";
+import { INITIAL_VIEW_STATE } from "./constant";
+import { SplittedMaps, DeckGLOverlay } from "@/components/ui/maps";
 import {
   useGridLayer,
   GridFillType,
   GridElevation,
-} from "@/components/maps/use-grid-layer";
+} from "@/components/analysis/use-grid-layer";
 
 interface GridLayerProps {
   fill: GridFillType;
@@ -26,6 +27,7 @@ export const CompareGridLayer: FC<Pick<GridLayerProps, "elevation">> = ({
   elevation,
 }) => (
   <SplittedMaps
+    viewState={INITIAL_VIEW_STATE}
     left={<GridLayer fill="FoodExpend" elevation={elevation} />}
     right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
   />

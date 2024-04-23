@@ -1,3 +1,4 @@
+import { GRID_ZONE_COLORS } from "./color";
 import { tableFromIPC } from "apache-arrow";
 import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
@@ -7,17 +8,14 @@ export type GridFillType = "FoodExpend" | "NonFoodExpend";
 
 export type GridElevation = keyof typeof ELEVATION_SCALE;
 
-export type GridZone = keyof typeof ZONE_COLORS;
-
-export const ZONE_COLORS = {
-  "Zona 1": [172, 250, 112],
-  "Zona 2": [67, 223, 139],
-  "Zona 3": [0, 188, 161],
-  "Zona 4": [0, 151, 163],
-  "Zona 5": [0, 116, 152],
-  "Zona 6": [9, 80, 127],
-  "Zona 7": [41, 47, 86],
-} as const;
+export type GridZone =
+  | "Zona 1"
+  | "Zona 2"
+  | "Zona 3"
+  | "Zona 4"
+  | "Zona 5"
+  | "Zona 6"
+  | "Zona 7";
 
 export const ELEVATION_SCALE = {
   Slope: 250,
@@ -71,7 +69,7 @@ export const useGridLayer = ({
   const colors = new Float32Array(zones.length * 3);
 
   for (let i = 0; i < zones.length; ++i) {
-    const color = ZONE_COLORS[zones[i] as GridZone];
+    const color = GRID_ZONE_COLORS[zones[i] as GridZone];
 
     colors[i * 3] = color[0] / 255;
     colors[i * 3 + 1] = color[1] / 255;

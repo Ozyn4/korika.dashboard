@@ -1,10 +1,13 @@
 import { create } from "zustand";
 import {
+  Cluster,
+  ClusterHoverData,
+} from "@/components/analysis/use-cluster-layer";
+import {
   GridElevation,
   GridFillType,
   GridHoverData,
-} from "@/components/maps/use-grid-layer";
-import { Cluster } from "@/components/maps/use-cluster-layer";
+} from "@/components/analysis/use-grid-layer";
 
 export type GridAnalysisState = {
   analysis: "grid";
@@ -21,7 +24,7 @@ type ActiveAnalysisState = GridAnalysisState | ClusterAnalysisState;
 
 interface DashboardState {
   active: ActiveAnalysisState;
-  tooltip?: GridHoverData;
+  tooltip?: GridHoverData | ClusterHoverData;
   changeActiveAnalysis: (analysis: ActiveAnalysisState["analysis"]) => void;
 }
 
