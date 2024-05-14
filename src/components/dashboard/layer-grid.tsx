@@ -7,6 +7,10 @@ import {
   GridFillType,
   GridElevation,
 } from "@/components/analysis/use-grid-layer";
+import {
+  useRegenciesBorderLabelLayer,
+  useRegenciesBorderLayer,
+} from "@/components/analysis/use-regencies-broder-layer";
 
 interface GridLayerProps {
   fill: GridFillType;
@@ -14,13 +18,24 @@ interface GridLayerProps {
 }
 
 export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
+  const show = useDashboardStore((state) => state.settings.regenciesBorder);
+
   const gridLayer = useGridLayer({
     fill,
     elevation,
     onHover: (tooltip) => useDashboardStore.setState({ tooltip }),
   });
 
-  return <DeckGLOverlay controller layers={[gridLayer]} />;
+  const regenciesBorder = useRegenciesBorderLayer();
+
+  const regenciesLabel = useRegenciesBorderLabelLayer();
+
+  return (
+    <DeckGLOverlay
+      controller
+      layers={[gridLayer, ...(show ? [regenciesBorder, regenciesLabel] : [])]}
+    />
+  );
 };
 
 export const CompareGridLayer: FC<Pick<GridLayerProps, "elevation">> = ({

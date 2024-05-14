@@ -4,7 +4,9 @@ import { Label } from "@/components/ui/label";
 export const Tooltip = () => {
   const tooltip = useDashboardStore((state) => state.tooltip);
 
-  if (!tooltip) return null;
+  const settings = useDashboardStore(state => state.settings)
+
+  if (!settings.tooltip || !tooltip) return null;
 
   return (
     <div

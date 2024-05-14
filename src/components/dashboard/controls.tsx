@@ -38,6 +38,7 @@ import {
   GRID_ZONE_COLORS,
   SOCIOECONOMIC_CLUSTER_COLOR,
 } from "@/components/analysis/color";
+import { Switch } from "../ui/switch";
 
 type ToggleGroupCustomItemProps = {
   value?: string;
@@ -157,7 +158,7 @@ const GridSelector = () => {
   return (
     <div className="flex flex-col gap-y-8 py-2">
       <div className="flex flex-col gap-4">
-        <Label className="font-bold">Fill By :</Label>
+        <Label className="font-bold">Fill</Label>
         <ToggleGroup
           type="single"
           value={active.fill}
@@ -179,7 +180,7 @@ const GridSelector = () => {
         </ToggleGroup>
       </div>
       <div className="flex flex-col gap-4">
-        <Label className="font-bold">Elevated Maps By :</Label>
+        <Label className="font-bold">Elevated Maps</Label>
         <ToggleGroup
           type="single"
           value={active.elevation}
@@ -346,6 +347,40 @@ const ClusterSelector = () => {
   );
 };
 
+const SettingsControl = () => {
+  const settings = useDashboardStore((state) => state.settings);
+
+  return (
+    <div className="flex flex-col gap-4 p-2">
+      <Label className="font-bold">Settings</Label>
+      <div className="flex flex-col gap-y-2">
+        <div className="flex flex-row items-center justify-between">
+          <Label>Show Tooltip</Label>
+          <Switch
+            checked={settings.tooltip}
+            onCheckedChange={(v) =>
+              useDashboardStore.setState((s) => ({
+                settings: { ...s.settings, tooltip: v },
+              }))
+            }
+          />
+        </div>
+        <div className="flex flex-row items-center justify-between">
+          <Label>Show Regencies Border</Label>
+          <Switch
+            checked={settings.regenciesBorder}
+            onCheckedChange={(v) =>
+              useDashboardStore.setState((s) => ({
+                settings: { ...s.settings, regenciesBorder: v },
+              }))
+            }
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /**
  * return control content based on active state
  *
@@ -354,7 +389,7 @@ const ClusterSelector = () => {
 const ControlsContent = () => {
   const active = useDashboardStore((state) => state.active);
   return (
-    <div>
+    <div className="flex flex-col gap-y-4">
       <Tabs
         defaultValue="grid"
         value={active.analysis}
@@ -385,6 +420,7 @@ const ControlsContent = () => {
           </div>
         </TabsContent>
       </Tabs>
+      <SettingsControl />
     </div>
   );
 };

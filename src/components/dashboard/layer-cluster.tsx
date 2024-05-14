@@ -5,12 +5,26 @@ import {
   Cluster,
   useClusterLayer,
 } from "@/components/analysis/use-cluster-layer";
+import {
+  useRegenciesBorderLayer,
+  useRegenciesBorderLabelLayer,
+} from "@/components/analysis/use-regencies-broder-layer";
 
 export const ClusterLayer: FC<{ cluster: Cluster }> = ({ cluster }) => {
+  const show = useDashboardStore((state) => state.settings.regenciesBorder);
+
   const layer = useClusterLayer({
     cluster,
     onHover: (tooltip) => useDashboardStore.setState({ tooltip }),
   });
 
-  return <DeckGLOverlay layers={[layer]} />;
+  const regenciesBorder = useRegenciesBorderLayer();
+
+  const regenciesLabel = useRegenciesBorderLabelLayer();
+
+  return (
+    <DeckGLOverlay
+      layers={[layer, ...(show ? [regenciesBorder, regenciesLabel] : [])]}
+    />
+  );
 };

@@ -26,12 +26,20 @@ interface DashboardState {
   active: ActiveAnalysisState;
   tooltip?: GridHoverData | ClusterHoverData;
   changeActiveAnalysis: (analysis: ActiveAnalysisState["analysis"]) => void;
+  settings: {
+    tooltip: boolean;
+    regenciesBorder: boolean;
+  };
 }
 
 export const useDashboardStore = create<DashboardState>()((set) => ({
   active: {
     analysis: "grid",
     fill: "FoodExpend",
+  },
+  settings: {
+    tooltip: true,
+    regenciesBorder: true,
   },
   changeActiveAnalysis: (analysis) =>
     set({

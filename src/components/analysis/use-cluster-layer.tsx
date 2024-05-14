@@ -37,6 +37,8 @@ export const useClusterLayer = ({ cluster, onHover }: ClusterLayerProps) => {
     data: data,
     filled: true,
     pickable: true,
+    getLineColor: [0, 0, 0, 125],
+    getLineWidth: 50,
     onHover: (info) => {
       if (info.index === -1) return onHover?.(undefined);
 

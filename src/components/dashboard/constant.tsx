@@ -14,7 +14,7 @@ export const INITIAL_VIEW_STATE: MapViewState = {
 };
 
 export const GRID_ANALYSIS_DESCRIPTION =
-  " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum sed fuga, ullam ducimus tempore molestias a inventore harum iure dolore repellendus non amet laboriosam mollitia debitis odit numquam officiis commodi.";
+  "Grid 1km x 1km calculated from some variables from socioeconomic and geographic";
 
 export const GEOGRAPHIC_CLUSTER_DESCRIPTION: Record<GeographicCluster, string> =
   {
