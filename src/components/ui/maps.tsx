@@ -47,12 +47,14 @@ export const SingleMaps: FC<
 interface SplittedMapsProps {
   left: ReactNode;
   right: ReactNode;
+  mapStyle?: string;
   viewState: MapViewState;
 }
 
 export const SplittedMaps: FC<SplittedMapsProps> = ({
   left,
   right,
+  mapStyle,
   viewState: initialViewState = {},
 }) => {
   const [leftRef, leftSize] = useMeasure<HTMLDivElement | null>();
@@ -79,6 +81,7 @@ export const SplittedMaps: FC<SplittedMapsProps> = ({
             {...(activeMap === "left" && {
               onMove: (evt) => setViewState(evt.viewState),
             })}
+            mapStyle={mapStyle}
             padding={{
               top: 0,
               right: 0,
@@ -100,6 +103,7 @@ export const SplittedMaps: FC<SplittedMapsProps> = ({
             {...(activeMap === "right" && {
               onMove: (evt) => setViewState(evt.viewState),
             })}
+            mapStyle={mapStyle}
             onMoveStart={() => setActiveMap("right")}
             padding={{
               top: 0,

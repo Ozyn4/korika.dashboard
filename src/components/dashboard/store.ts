@@ -29,6 +29,7 @@ interface DashboardState {
   settings: {
     tooltip: boolean;
     regenciesBorder: boolean;
+    baseMap: "default" | "satellite";
   };
 }
 
@@ -39,6 +40,7 @@ export const useDashboardStore = create<DashboardState>()((set) => ({
   },
   settings: {
     tooltip: true,
+    baseMap: "default",
     regenciesBorder: true,
   },
   changeActiveAnalysis: (analysis) =>

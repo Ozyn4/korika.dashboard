@@ -40,10 +40,19 @@ export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
 
 export const CompareGridLayer: FC<Pick<GridLayerProps, "elevation">> = ({
   elevation,
-}) => (
-  <SplittedMaps
-    viewState={INITIAL_VIEW_STATE}
-    left={<GridLayer fill="FoodExpend" elevation={elevation} />}
-    right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
-  />
-);
+}) => {
+  const baseMap = useDashboardStore((state) => state.settings.baseMap);
+
+  return (
+    <SplittedMaps
+      mapStyle={
+        baseMap === "default"
+          ? "/maps/style.json"
+          : "/maps/style-satellite.json"
+      }
+      viewState={INITIAL_VIEW_STATE}
+      left={<GridLayer fill="FoodExpend" elevation={elevation} />}
+      right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
+    />
+  );
+};

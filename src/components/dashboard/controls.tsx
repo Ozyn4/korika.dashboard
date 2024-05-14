@@ -1,8 +1,8 @@
 import { cn } from "@/utils/classnames";
 import { Label } from "@/components/ui/label";
 import {
-  GEOGRAPHIC_CLUSTER_DESCRIPTION,
   GRID_ANALYSIS_DESCRIPTION,
+  GEOGRAPHIC_CLUSTER_DESCRIPTION,
   SOCIOECONOMIC_CLUSTER_DESCRIPTION,
 } from "./constant";
 import { GridZone } from "@/components/analysis/use-grid-layer";
@@ -12,6 +12,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+  IconMap,
   IconBooks,
   IconSchool,
   IconBackpack,
@@ -19,6 +20,7 @@ import {
   IconAmbulance,
   IconCircleOff,
   IconChartLine,
+  IconSatellite,
   IconSoccerField,
   IconToolsKitchen,
   IconBuildingHospital,
@@ -164,15 +166,16 @@ const GridSelector = () => {
           value={active.fill}
           defaultValue="FoodExpend"
           className="grid grid-cols-3"
-          onValueChange={(value) =>
+          onValueChange={(value) => {
+            if (!value) return;
             useDashboardStore.setState((state) => ({
               active: {
                 ...state.active,
                 fill: value as (typeof active)["fill"],
                 analysis: "grid",
               },
-            }))
-          }
+            }));
+          }}
         >
           {FILL_TYPE_CONTROL.map((i) => (
             <ToggleGroupCustomItem key={i.value} {...i} />
@@ -329,14 +332,16 @@ const ClusterSelector = () => {
           value={active.clusters}
           defaultValue="FoodExpend"
           className="grid grid-cols-2"
-          onValueChange={(value) =>
+          onValueChange={(value) => {
+            if (!value) return;
+
             useDashboardStore.setState({
               active: {
                 clusters: value as (typeof active)["clusters"],
                 analysis: "cluster",
               },
-            })
-          }
+            });
+          }}
         >
           {FILL_TYPE_CONTROL.map((i) => (
             <ToggleGroupCustomItem key={i.value} {...i} />
@@ -355,7 +360,7 @@ const SettingsControl = () => {
       <Label className="font-bold">Settings</Label>
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-row items-center justify-between">
-          <Label>Show Tooltip</Label>
+          <Label>Tooltip</Label>
           <Switch
             checked={settings.tooltip}
             onCheckedChange={(v) =>
@@ -366,7 +371,7 @@ const SettingsControl = () => {
           />
         </div>
         <div className="flex flex-row items-center justify-between">
-          <Label>Show Regencies Border</Label>
+          <Label>Regencies Border</Label>
           <Switch
             checked={settings.regenciesBorder}
             onCheckedChange={(v) =>
@@ -376,6 +381,30 @@ const SettingsControl = () => {
             }
           />
         </div>
+        <ToggleGroup
+          type="single"
+          value={settings.baseMap}
+          className="grid grid-cols-2"
+          onValueChange={(value: "default" | "satellite") =>
+            useDashboardStore.setState((state) => ({
+              settings: {
+                ...state.settings,
+                baseMap: value ? value : "default",
+              },
+            }))
+          }
+        >
+          <ToggleGroupCustomItem
+            label="Default"
+            value="default"
+            icon={<IconMap className="stroke-1" />}
+          />
+          <ToggleGroupCustomItem
+            label="Satellite"
+            value="satellite"
+            icon={<IconSatellite className="stroke-1" />}
+          />
+        </ToggleGroup>
       </div>
     </div>
   );
