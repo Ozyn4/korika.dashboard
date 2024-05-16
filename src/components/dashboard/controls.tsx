@@ -41,6 +41,7 @@ import {
   SOCIOECONOMIC_CLUSTER_COLOR,
 } from "@/components/analysis/color";
 import { Switch } from "../ui/switch";
+import { ResponsiveRadar } from "@nivo/radar";
 
 type ToggleGroupCustomItemProps = {
   value?: string;
@@ -260,6 +261,110 @@ const ClusterSwatch: FC<ComponentProps<"div">> = ({ className, ...props }) => {
   );
 };
 
+const ClusterRadarChart: FC<{ cluster: Cluster }> = ({ cluster }) => {
+  if (cluster === "Geographic")
+    return (
+      <div className="aspect-square w-full">
+        <ResponsiveRadar
+          gridLabelOffset={10}
+          dotBorderWidth={0.5}
+          motionConfig="wobbly"
+          blendMode="luminosity"
+          margin={{ right: 40, left: 40 }}
+          indexBy="index"
+          valueFormat=">-.3f"
+          colors={["#f77a52", "#21c9ff", "#f2d03b"]}
+          keys={["cluster1", "cluster2", "cluster3"]}
+          data={[
+            {
+              index: "Makanan",
+              cluster1: 0.466747978,
+              cluster2: 0.514496674,
+              cluster3: 0.866267094,
+            },
+            {
+              index: "Non Makanan",
+              cluster1: 0.533252022,
+              cluster2: 0.485503326,
+              cluster3: 0.133732906,
+            },
+            {
+              index: "Vegetation",
+              cluster1: 0.372436938,
+              cluster2: 0.607455838,
+              cluster3: 0.603621829,
+            },
+            {
+              index: "Urban",
+              cluster1: 0.581804036,
+              cluster2: 0.251200151,
+              cluster3: 0.24054495,
+            },
+            {
+              index: "Pollution",
+              cluster1: 0.756474774,
+              cluster2: 0.379658214,
+              cluster3: 0.368122998,
+            },
+          ]}
+        />
+      </div>
+    );
+
+  return (
+    <div className="aspect-square w-full">
+      <ResponsiveRadar
+        gridLabelOffset={10}
+        dotBorderWidth={0.5}
+        motionConfig="wobbly"
+        blendMode="luminosity"
+        margin={{ right: 40, left: 40 }}
+        indexBy="index"
+        valueFormat=">-.3f"
+        colors={["#f77a52", "#bba4ff", "#00dad6", "#f2d03b"]}
+        keys={["cluster1", "cluster2", "cluster3", "cluster4"]}
+        data={[
+          {
+            index: "Makanan",
+            cluster1: 0.41428884,
+            cluster2: 0.38999789,
+            cluster3: 0.61106984,
+            cluster4: 0.92714162,
+          },
+          {
+            index: "Non Makanan",
+            cluster1: 0.58571116,
+            cluster2: 0.61000211,
+            cluster3: 0.38893016,
+            cluster4: 0.07285838,
+          },
+          {
+            index: "Education",
+            cluster1: 0.359251,
+            cluster2: 0.112224,
+            cluster3: 0.106683,
+            cluster4: 0.089254,
+          },
+          {
+            index: "Health",
+            cluster1: 0.326341,
+            cluster2: 0.084477,
+            cluster3: 0.072607,
+            cluster4: 0.062862,
+          },
+          {
+            index: "Economy",
+            cluster1: 0.418042,
+            cluster2: 0.248166,
+            cluster3: 0.229731,
+            cluster4: 0.214951,
+          },
+        ]}
+      />
+    </div>
+  );
+};
+
 const ClusterDescription: FC<{ cluster: Cluster }> = ({ cluster }) => {
   const DescriptionItem = ({
     color,
@@ -443,6 +548,9 @@ const ControlsContent = () => {
           <div className="space-y-2 px-2">
             <ClusterSwatch />
             <ClusterSelector />
+            <ClusterRadarChart
+              cluster={(active as ClusterAnalysisState).clusters}
+            />
             <ClusterDescription
               cluster={(active as ClusterAnalysisState).clusters}
             />
@@ -481,9 +589,11 @@ export const Controls = () => {
   const isDesktop = useIsDesktop();
 
   return isDesktop ? (
-    <div className="absolute left-0 z-[1000] flex w-96 flex-col p-10">
-      <div className="w-full flex-1 rounded-sm border bg-white shadow-sm">
-        <ControlsContent />
+    <div className="absolute left-0 z-[1000] flex h-full w-96 flex-col p-10">
+      <div className="max-h-full w-full flex-1 overflow-scroll">
+        <div className="w-full flex-1 rounded-sm border bg-white shadow-sm">
+          <ControlsContent />
+        </div>
       </div>
     </div>
   ) : (

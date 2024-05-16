@@ -15,7 +15,7 @@ interface GridLayerProps {
 }
 
 export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
-  const show = useDashboardStore((state) => state.settings.region);
+  const showRegion = useDashboardStore((state) => state.settings.region);
 
   const gridLayer = useGridLayer({
     fill,
@@ -23,26 +23,26 @@ export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
     onHover: (tooltip) => useDashboardStore.setState({ tooltip }),
   });
 
-  const region = useRegionLayer({ disabled: !show });
+  const region = useRegionLayer({ disabled: !showRegion });
 
   return <DeckGLOverlay controller layers={[gridLayer, ...region]} />;
 };
 
-export const CompareGridLayer: FC<Pick<GridLayerProps, "elevation">> = ({
-  elevation,
-}) => {
+type CompareGridLayerProps = Pick<GridLayerProps, "elevation">;
+
+export const CompareGridLayer: FC<CompareGridLayerProps> = ({ elevation }) => {
   const baseMap = useDashboardStore((state) => state.settings.baseMap);
 
   return (
     <SplittedMaps
+      viewState={INITIAL_VIEW_STATE}
+      left={<GridLayer fill="FoodExpend" elevation={elevation} />}
+      right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
       mapStyle={
         baseMap === "default"
           ? "/maps/style.json"
           : "/maps/style-satellite.json"
       }
-      viewState={INITIAL_VIEW_STATE}
-      left={<GridLayer fill="FoodExpend" elevation={elevation} />}
-      right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
     />
   );
 };
