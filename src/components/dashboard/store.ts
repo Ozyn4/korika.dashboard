@@ -24,8 +24,11 @@ type ActiveAnalysisState = GridAnalysisState | ClusterAnalysisState;
 
 interface DashboardState {
   active: ActiveAnalysisState;
+
   tooltip?: GridHoverData | ClusterHoverData;
+
   changeActiveAnalysis: (analysis: ActiveAnalysisState["analysis"]) => void;
+
   settings: {
     region: boolean;
     tooltip: boolean;

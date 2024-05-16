@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { useDashboardStore } from "./store";
 import { DeckGLOverlay } from "@/components/ui/maps";
+import { useDashboardStore } from "@/components/dashboard/store";
 import { useRegionLayer } from "@/components/analysis/use-regencies-broder-layer";
 import {
   Cluster,

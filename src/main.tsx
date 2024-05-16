@@ -1,4 +1,6 @@
 import "./globals.css";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/plus-jakarta-sans";
 
 import App from "./app";
 import React from "react";

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { useDashboardStore } from "./store";
-import { INITIAL_VIEW_STATE } from "./constant";
+import { useDashboardStore } from "@/components/dashboard/store";
 import { SplittedMaps, DeckGLOverlay } from "@/components/ui/maps";
+import { INITIAL_VIEW_STATE } from "@/components/dashboard/constant";
 import { useRegionLayer } from "@/components/analysis/use-regencies-broder-layer";
 import {
   useGridLayer,

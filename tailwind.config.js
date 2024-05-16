@@ -16,6 +16,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ["Plus Jakarta Sans Variable", "sans-serif"],
+      mono: ["JetBrains Mono Variable", "monospace"],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -73,5 +77,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };

@@ -1,13 +1,14 @@
 import { Tooltip } from "./tooltip";
 import { Controls } from "./controls";
 import { useDashboardStore } from "./store";
-import { ClusterLayer } from "./layer-cluster";
 import { INITIAL_VIEW_STATE } from "./constant";
 import { SingleMaps } from "@/components/ui/maps";
 import { MapProvider } from "react-map-gl/maplibre";
+import { ClusterLayer } from "./layers/layer-cluster";
 import { GridFillType } from "../analysis/use-grid-layer";
 import { WasmWrapper } from "@/components/ui/wasm-wrapper";
-import { CompareGridLayer, GridLayer } from "./layer-grid";
+import { CompareGridLayer, GridLayer } from "./layers/layer-grid";
+import { TooltipProvider } from "../ui/tooltip";
 
 const DashboardMapLayer = () => {
   const baseMap = useDashboardStore((state) => state.settings.baseMap);
@@ -42,11 +43,13 @@ const DashboardMapLayer = () => {
 
 export const Dashboard = () => {
   return (
-    <WasmWrapper>
-      <MapProvider>
-        <Controls />
-        <DashboardMapLayer />
-      </MapProvider>
-    </WasmWrapper>
+    <TooltipProvider>
+      <WasmWrapper>
+        <MapProvider>
+          <Controls />
+          <DashboardMapLayer />
+        </MapProvider>
+      </WasmWrapper>
+    </TooltipProvider>
   );
 };
