@@ -269,7 +269,7 @@ const ClusterRadarChart: FC<{ cluster: Cluster }> = ({ cluster }) => {
           gridLabelOffset={10}
           dotBorderWidth={0.5}
           motionConfig="wobbly"
-          blendMode="luminosity"
+          blendMode="multiply"
           margin={{ right: 40, left: 40 }}
           indexBy="index"
           valueFormat=">-.3f"
@@ -317,7 +317,7 @@ const ClusterRadarChart: FC<{ cluster: Cluster }> = ({ cluster }) => {
         gridLabelOffset={10}
         dotBorderWidth={0.5}
         motionConfig="wobbly"
-        blendMode="luminosity"
+        blendMode="multiply"
         margin={{ right: 40, left: 40 }}
         indexBy="index"
         valueFormat=">-.3f"
@@ -365,7 +365,7 @@ const ClusterRadarChart: FC<{ cluster: Cluster }> = ({ cluster }) => {
   );
 };
 
-const ClusterDescription: FC<{ cluster: Cluster }> = ({ cluster }) => {
+export const ClusterDescription: FC<{ cluster: Cluster }> = ({ cluster }) => {
   const DescriptionItem = ({
     color,
     cluster,
@@ -523,7 +523,7 @@ const SettingsControl = () => {
 const ControlsContent = () => {
   const active = useDashboardStore((state) => state.active);
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-2">
       <Tabs
         defaultValue="grid"
         value={active.analysis}
@@ -551,9 +551,9 @@ const ControlsContent = () => {
             <ClusterRadarChart
               cluster={(active as ClusterAnalysisState).clusters}
             />
-            <ClusterDescription
+            {/* <ClusterDescription
               cluster={(active as ClusterAnalysisState).clusters}
-            />
+            /> */}
           </div>
         </TabsContent>
       </Tabs>
@@ -590,7 +590,7 @@ export const Controls = () => {
 
   return isDesktop ? (
     <div className="absolute left-0 z-[1000] flex h-full w-96 flex-col p-10">
-      <div className="max-h-full w-full flex-1 overflow-scroll">
+      <div className="max-h-full w-full flex-1 overflow-auto">
         <div className="w-full flex-1 rounded-sm border bg-white shadow-sm">
           <ControlsContent />
         </div>
