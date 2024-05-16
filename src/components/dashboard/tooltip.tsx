@@ -22,7 +22,7 @@ export const Tooltip = () => {
           >
             <Label className="font-bold text-xs">{key}</Label>
             <Label className="font-mono text-xs">
-              {Number.isNaN(Number(tooltip.data[key]))
+              {!tooltip.data[key] || Number.isNaN(Number(tooltip.data[key]))
                 ? tooltip.data[key]
                 : Number(tooltip.data[key]).toFixed(4)}
             </Label>

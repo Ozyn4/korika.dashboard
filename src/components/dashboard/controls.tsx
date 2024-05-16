@@ -359,28 +359,6 @@ const SettingsControl = () => {
     <div className="flex flex-col gap-4 p-2">
       <Label className="font-bold">Settings</Label>
       <div className="flex flex-col gap-y-2">
-        <div className="flex flex-row items-center justify-between">
-          <Label>Tooltip</Label>
-          <Switch
-            checked={settings.tooltip}
-            onCheckedChange={(v) =>
-              useDashboardStore.setState((s) => ({
-                settings: { ...s.settings, tooltip: v },
-              }))
-            }
-          />
-        </div>
-        <div className="flex flex-row items-center justify-between">
-          <Label>Regencies Border</Label>
-          <Switch
-            checked={settings.regenciesBorder}
-            onCheckedChange={(v) =>
-              useDashboardStore.setState((s) => ({
-                settings: { ...s.settings, regenciesBorder: v },
-              }))
-            }
-          />
-        </div>
         <ToggleGroup
           type="single"
           value={settings.baseMap}
@@ -405,6 +383,28 @@ const SettingsControl = () => {
             icon={<IconSatellite className="stroke-1" />}
           />
         </ToggleGroup>
+        <div className="flex flex-row items-center justify-between">
+          <Label>Tooltip</Label>
+          <Switch
+            checked={settings.tooltip}
+            onCheckedChange={(v) =>
+              useDashboardStore.setState((s) => ({
+                settings: { ...s.settings, tooltip: v },
+              }))
+            }
+          />
+        </div>
+        <div className="flex flex-row items-center justify-between">
+          <Label>Region Border</Label>
+          <Switch
+            checked={settings.region}
+            onCheckedChange={(v) =>
+              useDashboardStore.setState((s) => ({
+                settings: { ...s.settings, region: v },
+              }))
+            }
+          />
+        </div>
       </div>
     </div>
   );

@@ -2,15 +2,12 @@ import { FC } from "react";
 import { useDashboardStore } from "./store";
 import { INITIAL_VIEW_STATE } from "./constant";
 import { SplittedMaps, DeckGLOverlay } from "@/components/ui/maps";
+import { useRegionLayer } from "@/components/analysis/use-regencies-broder-layer";
 import {
   useGridLayer,
   GridFillType,
   GridElevation,
 } from "@/components/analysis/use-grid-layer";
-import {
-  useRegenciesBorderLabelLayer,
-  useRegenciesBorderLayer,
-} from "@/components/analysis/use-regencies-broder-layer";
 
 interface GridLayerProps {
   fill: GridFillType;
@@ -18,7 +15,7 @@ interface GridLayerProps {
 }
 
 export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
-  const show = useDashboardStore((state) => state.settings.regenciesBorder);
+  const show = useDashboardStore((state) => state.settings.region);
 
   const gridLayer = useGridLayer({
     fill,
@@ -26,16 +23,9 @@ export const GridLayer: FC<GridLayerProps> = ({ fill, elevation }) => {
     onHover: (tooltip) => useDashboardStore.setState({ tooltip }),
   });
 
-  const regenciesBorder = useRegenciesBorderLayer();
+  const region = useRegionLayer({ disabled: !show });
 
-  const regenciesLabel = useRegenciesBorderLabelLayer();
-
-  return (
-    <DeckGLOverlay
-      controller
-      layers={[gridLayer, ...(show ? [regenciesBorder, regenciesLabel] : [])]}
-    />
-  );
+  return <DeckGLOverlay controller layers={[gridLayer, ...region]} />;
 };
 
 export const CompareGridLayer: FC<Pick<GridLayerProps, "elevation">> = ({
