@@ -65,8 +65,8 @@ export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
 
 export const GridDescription = () => (
   <p className="text-sm">
-    Grid 1km x 1km calculated from some variables from socioeconomic and
-    geographic
+    Granular socio-economic mapping 1km x 1km based on remote sensing and other
+    geospatial big data
   </p>
 );
 

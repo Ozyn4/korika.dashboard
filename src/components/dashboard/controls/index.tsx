@@ -1,7 +1,10 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SettingsControl } from "./controls-setting";
-import { ExplainationContent } from "./explaination";
+import {
+  ExplainationContent,
+  ExplainationContentDesktopContainer,
+} from "./explaination";
 import { useIsDesktop } from "@/components/hooks/use-is-desktop";
 import { useDashboardStore } from "@/components/dashboard/store";
 import { GridSwatch, GridSelector, GridDescription } from "./controls-grid";
@@ -84,14 +87,25 @@ const MobileControlsTrigger = forwardRef<HTMLDivElement>((_props, ref) => {
  * @returns
  */
 export const Controls = () => {
+  const [isExplationOpen, setIsExplanationOpen] = useState(false);
+
+  const toggleExplanation = () => setIsExplanationOpen(!isExplationOpen);
+
   const isDesktop = useIsDesktop();
 
   return isDesktop ? (
-    <div className="absolute left-0 z-[1000] flex h-full w-96 flex-col gap-y-2 p-10">
-      <div className="max-h-full w-full overflow-auto">
-        <div className="w-full rounded-sm border bg-white shadow-sm">
-          <ControlsContent />
+    <div>
+      <ExplainationContentDesktopContainer
+        open={isDesktop && isExplationOpen}
+        onOpenChange={toggleExplanation}
+      />
+      <div className="absolute left-0 z-[1000] flex h-full w-96 flex-col gap-y-2 p-10">
+        <div className="max-h-full w-full overflow-auto">
+          <div className="w-full rounded-sm border bg-white shadow-sm">
+            <ControlsContent />
+          </div>
         </div>
+        <Button onClick={toggleExplanation}>Explain Me</Button>
       </div>
     </div>
   ) : (
