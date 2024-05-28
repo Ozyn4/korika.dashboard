@@ -160,7 +160,14 @@ export const GridSelector = () => {
         </ToggleGroup>
       </div>
       <div className="flex flex-col gap-4">
-        <Label className="font-bold">Elevated Maps</Label>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Label className="font-bold">Elevated Maps</Label>
+          </TooltipTrigger>
+          <TooltipContent side="bottom" sideOffset={-10}>
+            Use <code>ctrl</code> and scroll or finger to show the 3d maps
+          </TooltipContent>
+        </Tooltip>
         <ToggleGroup
           type="single"
           value={active.elevation}

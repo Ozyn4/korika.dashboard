@@ -2,7 +2,7 @@ import { Dashboard } from "./components/dashboard";
 
 function App() {
   return (
-    <div vaul-drawer-wrapper="" className="relative h-svh w-full bg-background font-sans">
+    <div vaul-drawer-wrapper="" className="relative h-svh w-full overflow-hidden bg-background font-sans">
       <Dashboard />
     </div>
   );

@@ -1,14 +1,14 @@
 import { cn } from "@/utils/classnames";
 import { IconX } from "@tabler/icons-react";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import img from "@/assets/satellite-imagery.png";
+import { GridZone } from "@/components/analysis/use-grid-layer";
 import {
-  GEOGRAPHIC_CLUSTER_COLOR,
   GRID_ZONE_COLORS,
+  GEOGRAPHIC_CLUSTER_COLOR,
   SOCIOECONOMIC_CLUSTER_COLOR,
 } from "@/components/analysis/color";
-import { GridZone } from "@/components/analysis/use-grid-layer";
-import { Label } from "@/components/ui/label";
 
 export const ExplainationContent = () => {
   return (
