@@ -1,22 +1,22 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import MapLibre from "react-map-gl/maplibre";
-import { MapboxOverlay } from "@deck.gl/mapbox";
-import { useControl } from "react-map-gl/maplibre";
-import { DeckProps, MapViewState } from "@deck.gl/core";
 import { useMeasure } from "@/components/hooks/use-measure";
 import {
-  FC,
-  useState,
-  ReactNode,
-  ComponentProps,
-  PropsWithChildren,
-} from "react";
-import {
-  ResizablePanel,
   ResizableHandle,
+  ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { DeckProps, MapViewState } from "@deck.gl/core";
+import { MapboxOverlay } from "@deck.gl/mapbox";
+import {
+  ComponentProps,
+  FC,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from "react";
+import MapLibre from "react-map-gl/maplibre";
+import { useControl } from "react-map-gl/maplibre";
 
 export const DeckGLOverlay = (props: DeckProps) => {
   const overlay = useControl<MapboxOverlay>(() => new MapboxOverlay(props));

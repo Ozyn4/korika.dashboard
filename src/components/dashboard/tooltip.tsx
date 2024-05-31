@@ -1,5 +1,5 @@
-import { useDashboardStore } from "./store";
 import { Label } from "@/components/ui/label";
+import { useDashboardStore } from "./store";
 
 export const Tooltip = () => {
   const tooltip = useDashboardStore((state) => state.tooltip);

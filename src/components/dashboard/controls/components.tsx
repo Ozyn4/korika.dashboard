@@ -1,4 +1,3 @@
-import { ReactNode, FC } from "react";
 import { Label } from "@/components/ui/label";
 import { ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
@@ -6,6 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { FC, ReactNode } from "react";
 
 type ToggleGroupCustomItemProps = {
   value?: string;

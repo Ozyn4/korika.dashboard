@@ -1,5 +1,5 @@
-import { GridZone } from "./use-grid-layer";
 import { GeographicCluster, SocioeconomicCluster } from "./use-cluster-layer";
+import { GridZone } from "./use-grid-layer";
 
 export const GRID_ZONE_COLORS: Record<GridZone, number[]> = {
   "Zona 1": [172, 250, 112],

@@ -1,4 +1,3 @@
-import { create } from "zustand";
 import {
   Cluster,
   ClusterHoverData,
@@ -8,6 +7,7 @@ import {
   GridFillType,
   GridHoverData,
 } from "@/components/analysis/use-grid-layer";
+import { create } from "zustand";
 
 export type GridAnalysisState = {
   analysis: "grid";

@@ -27,7 +27,7 @@ export const useClusterLayer = ({ cluster, onHover }: ClusterLayerProps) => {
     queryKey: ["clusters"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch("/maps/cluster.geojson").then((res) => res.json()),
+    queryFn: () => fetch("/data/cluster.geojson").then((res) => res.json()),
   });
 
   return new GeoJsonLayer<{
@@ -48,7 +48,9 @@ export const useClusterLayer = ({ cluster, onHover }: ClusterLayerProps) => {
     getFillColor: (f) => {
       return cluster === "Geographic"
         ? GEOGRAPHIC_CLUSTER_COLOR[f.properties.Geographic] || [0, 0, 0, 0]
-        : SOCIOECONOMIC_CLUSTER_COLOR[f.properties.Socioeconomic] || [0, 0, 0, 0];
+        : SOCIOECONOMIC_CLUSTER_COLOR[f.properties.Socioeconomic] || [
+            0, 0, 0, 0,
+          ];
     },
     updateTriggers: {
       getFillColor: [cluster],

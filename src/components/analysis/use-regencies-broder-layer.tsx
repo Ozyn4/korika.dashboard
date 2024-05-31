@@ -6,7 +6,7 @@ const useRegenciesBorderLayer = () => {
     queryKey: ["regencies"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch("/maps/west-java.geojson").then((res) => res.json()),
+    queryFn: () => fetch("/data/west-java.geojson").then((res) => res.json()),
   });
 
   return new GeoJsonLayer({
@@ -23,7 +23,7 @@ const useRegenciesBorderLabelLayer = () => {
     gcTime: Infinity,
     staleTime: Infinity,
     queryFn: () =>
-      fetch("/maps/west-java-label.geojson").then((res) => res.json()),
+      fetch("/data/west-java-label.geojson").then((res) => res.json()),
   });
 
   return new GeoJsonLayer({
@@ -42,7 +42,7 @@ const useDistrictBorderLayer = () => {
     queryKey: ["clusters"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch("/maps/cluster.geojson").then((res) => res.json()),
+    queryFn: () => fetch("/data/cluster.geojson").then((res) => res.json()),
   });
 
   return new GeoJsonLayer({

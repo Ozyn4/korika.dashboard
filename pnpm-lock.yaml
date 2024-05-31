@@ -9,17 +9,17 @@ importers:
   .:
     dependencies:
       '@deck.gl/core':
-        specifier: ^9.0.16
-        version: 9.0.16
+        specifier: ^9.0.17
+        version: 9.0.17
       '@deck.gl/layers':
-        specifier: ^9.0.16
-        version: 9.0.16(@deck.gl/core@9.0.16)(@loaders.gl/core@4.2.0)(@luma.gl/core@9.0.14)(@luma.gl/engine@9.0.14(@luma.gl/core@9.0.14))
+        specifier: ^9.0.17
+        version: 9.0.17(@deck.gl/core@9.0.17)(@loaders.gl/core@4.2.0)(@luma.gl/core@9.0.14)(@luma.gl/engine@9.0.14(@luma.gl/core@9.0.14))
       '@deck.gl/mapbox':
-        specifier: ^9.0.16
-        version: 9.0.16(@deck.gl/core@9.0.16)(@luma.gl/core@9.0.14)
+        specifier: ^9.0.17
+        version: 9.0.17(@deck.gl/core@9.0.17)(@luma.gl/core@9.0.14)
       '@deck.gl/react':
-        specifier: ^9.0.16
-        version: 9.0.16(@deck.gl/core@9.0.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^9.0.17
+        version: 9.0.17(@deck.gl/core@9.0.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.21
         version: 5.0.21
@@ -103,8 +103,8 @@ importers:
         specifier: ^0.5.13
         version: 0.5.13(tailwindcss@3.4.3)
       '@types/node':
-        specifier: ^20.12.12
-        version: 20.12.12
+        specifier: ^20.13.0
+        version: 20.13.0
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -113,7 +113,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.3.0
-        version: 4.3.0(vite@5.2.11(@types/node@20.12.12))
+        version: 4.3.0(vite@5.2.12(@types/node@20.13.0))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -127,8 +127,8 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
       vite:
-        specifier: ^5.2.11
-        version: 5.2.11(@types/node@20.12.12)
+        specifier: ^5.2.12
+        version: 5.2.12(@types/node@20.13.0)
 
 packages:
 
@@ -325,25 +325,25 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@deck.gl/core@9.0.16':
-    resolution: {integrity: sha512-8VP+01/7/iJDkQMW9Cu5+YMRSKXYD19aGABZZLR0pZJ2MnoTJLZMivhwimYIjaKhKfA/3qqu3k8aakEDBU+Tdw==}
+  '@deck.gl/core@9.0.17':
+    resolution: {integrity: sha512-ZtflEOuob4jbB4ylQTa2FRUSxsa+d9ZVvLdcXtnUlt1nUi/geXtSZqmwD8vgGav+sUPdsxyjHAttONb8hUz5kw==}
 
-  '@deck.gl/layers@9.0.16':
-    resolution: {integrity: sha512-9piNu++TWLr5sXehmf+lbLFLl3txUnjdltOA2iGmdW/iIxC1DYVSHT7LI5WfQ0dxVHVp2Zgw9RyYs0aRmsumkQ==}
+  '@deck.gl/layers@9.0.17':
+    resolution: {integrity: sha512-j8yPFowax5XED0dy5J8HArJvyF2okyWovlKpwRJw0dRXzerqFZClg8Y+esjcxvDgr7ckd4F42JLZw6ZzcUMbVA==}
     peerDependencies:
       '@deck.gl/core': ^9.0.0
       '@loaders.gl/core': ^4.2.0
       '@luma.gl/core': ^9.0.0
       '@luma.gl/engine': ^9.0.0
 
-  '@deck.gl/mapbox@9.0.16':
-    resolution: {integrity: sha512-hBRiDf+WFx6tU+epjF8OazUk2PgD6iBp3uwVEKJafxgt3c9r1fiSCwKfBxZGRyBSDJ48SPsAkTKIks5tS7rfjQ==}
+  '@deck.gl/mapbox@9.0.17':
+    resolution: {integrity: sha512-XEQPZ38Y5Q2P7atIIx6hvarZ6msM8iVCHiJvkQ331Q3G+eq4gLhooFnyYOtl4wWZJup3NaLSA2hFziAQIK4vpw==}
     peerDependencies:
       '@deck.gl/core': ^9.0.0
       '@luma.gl/core': ^9.0.0
 
-  '@deck.gl/react@9.0.16':
-    resolution: {integrity: sha512-W5lJprEX3+GskGQoc4jGajSvMHb2QijlUR/wRR/IxVOCq3/Sh/l6NyrJ3Wj+bjSX2UxisAZH8kRN/M5XSUsTQw==}
+  '@deck.gl/react@9.0.17':
+    resolution: {integrity: sha512-c6USsMhpzKfbgyljlOnHMOaVU7LSV3EIBWcnywIHnNDBd2Zftf+sO2qyzSVnew8CUsBo3kzeWA8nds4TrlBMXw==}
     peerDependencies:
       '@deck.gl/core': ^9.0.0
       react: '>=16.3.0'
@@ -1203,8 +1203,8 @@ packages:
   '@types/mapbox__vector-tile@1.3.4':
     resolution: {integrity: sha512-bpd8dRn9pr6xKvuEBQup8pwQfD4VUyqO/2deGjfpe6AwC8YRlyEipvefyRJUSiCJTZuCb8Pl1ciVV5ekqJ96Bg==}
 
-  '@types/node@20.12.12':
-    resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
+  '@types/node@20.13.0':
+    resolution: {integrity: sha512-FM6AOb3khNkNIXPnHFDYaHerSv8uN22C91z098AnGccVu+Pcdhi+pNUFDi0iLmPIsVE0JBD0KVS7mzUYt4nRzQ==}
 
   '@types/offscreencanvas@2019.7.3':
     resolution: {integrity: sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==}
@@ -2165,8 +2165,8 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
 
-  vite@5.2.11:
-    resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
+  vite@5.2.12:
+    resolution: {integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -2444,7 +2444,7 @@ snapshots:
   '@biomejs/cli-win32-x64@1.7.3':
     optional: true
 
-  '@deck.gl/core@9.0.16':
+  '@deck.gl/core@9.0.17':
     dependencies:
       '@loaders.gl/core': 4.2.0
       '@loaders.gl/images': 4.2.0(@loaders.gl/core@4.2.0)
@@ -2463,9 +2463,9 @@ snapshots:
       gl-matrix: 3.4.3
       mjolnir.js: 2.7.1
 
-  '@deck.gl/layers@9.0.16(@deck.gl/core@9.0.16)(@loaders.gl/core@4.2.0)(@luma.gl/core@9.0.14)(@luma.gl/engine@9.0.14(@luma.gl/core@9.0.14))':
+  '@deck.gl/layers@9.0.17(@deck.gl/core@9.0.17)(@loaders.gl/core@4.2.0)(@luma.gl/core@9.0.14)(@luma.gl/engine@9.0.14(@luma.gl/core@9.0.14))':
     dependencies:
-      '@deck.gl/core': 9.0.16
+      '@deck.gl/core': 9.0.17
       '@loaders.gl/core': 4.2.0
       '@loaders.gl/images': 4.2.0(@loaders.gl/core@4.2.0)
       '@loaders.gl/schema': 4.2.0(@loaders.gl/core@4.2.0)
@@ -2477,16 +2477,16 @@ snapshots:
       '@math.gl/web-mercator': 4.0.1
       earcut: 2.2.4
 
-  '@deck.gl/mapbox@9.0.16(@deck.gl/core@9.0.16)(@luma.gl/core@9.0.14)':
+  '@deck.gl/mapbox@9.0.17(@deck.gl/core@9.0.17)(@luma.gl/core@9.0.14)':
     dependencies:
-      '@deck.gl/core': 9.0.16
+      '@deck.gl/core': 9.0.17
       '@luma.gl/constants': 9.0.14
       '@luma.gl/core': 9.0.14
       '@math.gl/web-mercator': 4.0.1
 
-  '@deck.gl/react@9.0.16(@deck.gl/core@9.0.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@deck.gl/react@9.0.17(@deck.gl/core@9.0.17)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@deck.gl/core': 9.0.16
+      '@deck.gl/core': 9.0.17
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -3322,7 +3322,7 @@ snapshots:
       '@types/mapbox__point-geometry': 0.1.4
       '@types/pbf': 3.0.5
 
-  '@types/node@20.12.12':
+  '@types/node@20.13.0':
     dependencies:
       undici-types: 5.26.5
 
@@ -3345,14 +3345,14 @@ snapshots:
     dependencies:
       '@types/geojson': 7946.0.14
 
-  '@vitejs/plugin-react@4.3.0(vite@5.2.11(@types/node@20.12.12))':
+  '@vitejs/plugin-react@4.3.0(vite@5.2.12(@types/node@20.13.0))':
     dependencies:
       '@babel/core': 7.24.6
       '@babel/plugin-transform-react-jsx-self': 7.24.6(@babel/core@7.24.6)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.6)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.2.11(@types/node@20.12.12)
+      vite: 5.2.12(@types/node@20.13.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -3382,7 +3382,7 @@ snapshots:
       '@swc/helpers': 0.5.10
       '@types/command-line-args': 5.2.3
       '@types/command-line-usage': 5.0.4
-      '@types/node': 20.12.12
+      '@types/node': 20.13.0
       command-line-args: 5.2.1
       command-line-usage: 7.0.1
       flatbuffers: 24.3.25
@@ -4274,13 +4274,13 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  vite@5.2.11(@types/node@20.12.12):
+  vite@5.2.12(@types/node@20.13.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.14.3
     optionalDependencies:
-      '@types/node': 20.12.12
+      '@types/node': 20.13.0
       fsevents: 2.3.3
 
   vt-pbf@3.1.3:

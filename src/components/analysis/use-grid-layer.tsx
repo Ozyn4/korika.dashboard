@@ -1,8 +1,8 @@
-import { GRID_ZONE_COLORS } from "./color";
-import { tableFromIPC } from "apache-arrow";
 import { GridCellLayer } from "@deck.gl/layers";
 import { useQuery } from "@tanstack/react-query";
+import { tableFromIPC } from "apache-arrow";
 import { readParquet } from "parquet-wasm/esm/arrow2";
+import { GRID_ZONE_COLORS } from "./color";
 
 export type GridFillType = "FoodExpend" | "NonFoodExpend";
 
@@ -47,7 +47,7 @@ export const useGridLayer = ({
     queryKey: ["grid"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch("/maps/grid.parquet").then((res) => res.arrayBuffer()),
+    queryFn: () => fetch("/data/grid.parquet").then((res) => res.arrayBuffer()),
   });
 
   if (!data) return;

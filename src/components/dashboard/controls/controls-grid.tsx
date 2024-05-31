@@ -1,31 +1,31 @@
-import { ComponentProps } from "react";
-import { cn } from "@/utils/classnames";
-import { Label } from "@/components/ui/label";
-import { ToggleGroupCustomItem } from "./components";
-import { ToggleGroup } from "@/components/ui/toggle-group";
 import { GRID_ZONE_COLORS } from "@/components/analysis/color";
 import { GridZone } from "@/components/analysis/use-grid-layer";
 import {
-  useDashboardStore,
   GridAnalysisState,
+  useDashboardStore,
 } from "@/components/dashboard/store";
-import {
-  IconBooks,
-  IconSchool,
-  IconMountain,
-  IconBackpack,
-  IconCircleOff,
-  IconChartLine,
-  IconAmbulance,
-  IconSoccerField,
-  IconToolsKitchen,
-  IconBuildingHospital,
-} from "@tabler/icons-react";
+import { Label } from "@/components/ui/label";
+import { ToggleGroup } from "@/components/ui/toggle-group";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/utils/classnames";
+import {
+  IconAmbulance,
+  IconBackpack,
+  IconBooks,
+  IconBuildingHospital,
+  IconChartLine,
+  IconCircleOff,
+  IconMountain,
+  IconSchool,
+  IconSoccerField,
+  IconToolsKitchen,
+} from "@tabler/icons-react";
+import { ComponentProps } from "react";
+import { ToggleGroupCustomItem } from "./components";
 
 export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
   const active = useDashboardStore((s) => s.active as GridAnalysisState);

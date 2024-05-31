@@ -1,25 +1,25 @@
-import { forwardRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { SettingsControl } from "./controls-setting";
-import {
-  ExplainationContent,
-  ExplainationContentDesktopContainer,
-} from "./explaination";
-import { useIsDesktop } from "@/components/hooks/use-is-desktop";
 import { useDashboardStore } from "@/components/dashboard/store";
-import { GridSwatch, GridSelector, GridDescription } from "./controls-grid";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useIsDesktop } from "@/components/hooks/use-is-desktop";
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerContent,
   DrawerNestedRoot,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { forwardRef, useState } from "react";
 import {
-  ClusterSwatch,
-  ClusterSelector,
   ClusterRadarChart,
+  ClusterSelector,
+  ClusterSwatch,
 } from "./controls-cluster";
+import { GridDescription, GridSelector, GridSwatch } from "./controls-grid";
+import { SettingsControl } from "./controls-setting";
+import {
+  ExplainationContent,
+  ExplainationContentDesktopContainer,
+} from "./explaination";
 
 /**
  * return control content based on active state

@@ -1,6 +1,6 @@
 import { cn } from "@/utils/classnames";
-import * as ResizablePrimitive from "react-resizable-panels";
 import { IconGripHorizontal, IconGripVertical } from "@tabler/icons-react";
+import * as ResizablePrimitive from "react-resizable-panels";
 
 const ResizablePanelGroup = ({
   className,

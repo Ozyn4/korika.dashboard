@@ -1,24 +1,22 @@
-import { ComponentProps } from "react";
-import { cn } from "@/utils/classnames";
-import { Label } from "@/components/ui/label";
-import { ResponsiveRadar } from "@nivo/radar";
-import { ToggleGroupCustomItem } from "./components";
-import { ToggleGroup } from "@/components/ui/toggle-group";
-import { IconMountain, IconSchool } from "@tabler/icons-react";
 import {
   GEOGRAPHIC_CLUSTER_COLOR,
   SOCIOECONOMIC_CLUSTER_COLOR,
 } from "@/components/analysis/color";
 import {
-  useDashboardStore,
-  ClusterAnalysisState,
-} from "@/components/dashboard/store";
-import {
   GeographicCluster,
   SocioeconomicCluster,
 } from "@/components/analysis/use-cluster-layer";
-
-
+import {
+  ClusterAnalysisState,
+  useDashboardStore,
+} from "@/components/dashboard/store";
+import { Label } from "@/components/ui/label";
+import { ToggleGroup } from "@/components/ui/toggle-group";
+import { cn } from "@/utils/classnames";
+import { ResponsiveRadar } from "@nivo/radar";
+import { IconMountain, IconSchool } from "@tabler/icons-react";
+import { ComponentProps } from "react";
+import { ToggleGroupCustomItem } from "./components";
 
 export const ClusterSwatch = ({
   className,

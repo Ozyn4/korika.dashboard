@@ -1,13 +1,13 @@
-import { FC } from "react";
-import { useDashboardStore } from "@/components/dashboard/store";
-import { SplittedMaps, DeckGLOverlay } from "@/components/ui/maps";
-import { INITIAL_VIEW_STATE } from "@/components/dashboard/constant";
-import { useRegionLayer } from "@/components/analysis/use-regencies-broder-layer";
 import {
-  useGridLayer,
-  GridFillType,
   GridElevation,
+  GridFillType,
+  useGridLayer,
 } from "@/components/analysis/use-grid-layer";
+import { useRegionLayer } from "@/components/analysis/use-regencies-broder-layer";
+import { INITIAL_VIEW_STATE } from "@/components/dashboard/constant";
+import { useDashboardStore } from "@/components/dashboard/store";
+import { DeckGLOverlay, SplittedMaps } from "@/components/ui/maps";
+import { FC } from "react";
 
 interface GridLayerProps {
   fill: GridFillType;

@@ -1,9 +1,9 @@
+import { useDashboardStore } from "@/components/dashboard/store";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { ToggleGroupCustomItem } from "./components";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 import { IconMap, IconSatellite } from "@tabler/icons-react";
-import { useDashboardStore } from "@/components/dashboard/store";
+import { ToggleGroupCustomItem } from "./components";
 
 /**
  * global control for all analysis, basemaps, tooltip, and region
