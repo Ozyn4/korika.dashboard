@@ -4,6 +4,23 @@
 
 Social economics is primarily concerned with the interplay between social processes and economic activity within a society. Social economics may attempt to explain how a particular social group or socioeconomic class behaves within a society, including their actions as consumers. According to BPS Statistics Indonesia, low socio-economic fulfillment indicates poverty. Thus, socioeconomic data is important to read market needs to maximize sales. On the other hand, this data is also needed to show the incidence of poverty. However, traditional data collecting implies that socioeconomic data is only presented at the district level and updated once a year. This research aims to develop the granular socio-economic mapping based on remote sensing and other geospatial big data and present it in the form of a website-based dashboard enriched by insight into consumer behavior modeling and consumer behavior geographical factor analysis. This approach allows for presenting more granular socioeconomic data in terms of coverage and time at a cheaper cost and faster rate. To overcome this, we integrate multisource remote sensing satellite imagery and other geospatial big data by implementing artificial intelligence-machine learning and statistical analysis. The novelty of this research is the innovative advancement of remote sensing technology to improve market business strategy and poverty alleviation insights at the same time.​
 
+For private sectos, granular socio-economic mapping is important to improve:
+
+1. Understanding markerts and consumers (Jhally, S., 2014)​
+2. Targeted marketing strategies (Chid, B., et al, 2020)​
+3. Identifying new opportunities or expansions (Fung-Loy K., et al, 2019)​
+4. Improving business decisions (Chen, I C and Yang, B.C., 2022)​
+5. Enhancing social responsibility (Osuji, O.K. and Obibuaku, U. L., 2016)
+
+and for the government:
+
+1. Targeted poverty alleviation decision makings (in supporting SDGs 1: No Poverty)​
+2. Find areas where poor people living (Whelan, C.T., et al, 2010)​
+3. Reference to social assistance allocation (Hard, N. S., et al, 2013)​
+4. Regional infrastructure development (Andrade-Núñez, et al., 2020)​
+5. Government policies monitoring (Terés-Zubiaga, J., et al, 2023)​
+6. Spatial poverty traps monitoring (Putri et al, 2022)​
+
 This research aims to **integrate the potential of multisource remote sensing and other geospatial big data to predict the socio-economic conditions of granular areas**​. The main objective is then broken down into the following sub-objectives:​
 
 1. **What socioeconomic conditions exist in each granular area?** we developed Granular socio-economic mapping with machine learning modelling and 1 km granular socio-economic mapping as the output.​
@@ -49,35 +66,16 @@ To know consumer behaviour, we developed consumer behaviour modeling utilizing a
 
 We found that consumer behavior according to socioeconomic conditions can be clustered into four groups:
 
-1. **Cluster 1**
-
-   NonFood Expenditure > Food Expenditure. Well-Fulfilled Education, Health, and Economic Needs
-
-2. **Cluster 2**
-
-   NonFood Expenditure > Food Expenditure. Relatively Fulfilled Education, Health, and Economic Needs
-
-3. **Cluster 3**
-
-   Food Expenditure > NonFood Expenditure. Relatively Fulfilled Education, Health, and Economic Needs
-
-4. Cluster 4
-
-   Food Expenditure > NonFood Expenditure. Relatively Underfulfilled Education, Health, and Economic Needs
+1. **Cluster 1** : NonFood Expenditure > Food Expenditure. Well-Fulfilled Education, Health, and Economic Needs
+2. **Cluster 2** : NonFood Expenditure > Food Expenditure. Relatively Fulfilled Education, Health, and Economic Needs
+3. **Cluster 3** : Food Expenditure > NonFood Expenditure. Relatively Fulfilled Education, Health, and Economic Needs
+4. **Cluster 4** : Food Expenditure > NonFood Expenditure. Relatively Underfulfilled Education, Health, and Economic Needs
 
 Then, according to its geographical factors can be clustered into three groups:
 
-1. Cluster 1
-
-   NonFood Expenditure > Food Expenditure. Highest urbanization and pollution Lowest vegetation
-
-2. Cluster 2
-
-   NonFood Expenditure > Food Expenditure. Higher vegetation, Lower urbanization and pollution
-
-3. Cluster 3
-
-   Food Expenditure > NonFood Expenditure. Higher vegetation, Lower urbanization and pollution
+1. **Cluster 1** : NonFood Expenditure > Food Expenditure. Highest urbanization and pollution Lowest vegetation
+2. **Cluster 2** : NonFood Expenditure > Food Expenditure. Higher vegetation, Lower urbanization and pollution
+3. **Cluster 3** : Food Expenditure > NonFood Expenditure. Higher vegetation, Lower urbanization and pollution
 
 ## Website Development
 
@@ -104,7 +102,6 @@ The challange to create this website is to serve big geospatial dataset (granula
 ### Basemaps
 
 Basemap in this project is from modified version from cartodb positron and esri satellite in [mapbox style](https://docs.mapbox.com/style-spec/guides/).
-
 
 ## Authors
 
