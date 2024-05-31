@@ -27,6 +27,7 @@ We focus on three socioeconomic dimensions those are: economic activity, educati
 | Health            | Healthcare Point of Interest (POI)              | Accessibility and density to healthcare facilities               | OpenStreetMap | -                  | -                   | Google Maps Geospatial Location Scrapping > Distance and Density Calculation            |
 | Education         | Education Point of Interest (POI)               | Accessibility and density to education facilities                | OpenStreetMap | -                  | -                   | Google Maps Geospatial Location Scrapping > Distance and Density Calculation            |
 
+![analysis](./public/images/analysis.png)
 
 ## Results
 
@@ -35,7 +36,7 @@ We focus on three socioeconomic dimensions those are: economic activity, educati
 Our research is capable of mapping socio-economic conditions at a granular level of 1 km. ​This result was obtained from machine learning-based modeling with the following description. ​
 
 1. Expenditure visualizations are displayed in 7 zones, from the highest expenditure zone to the lowest expenditure zone. Also, it can display information such as distance to the nearest school, distance to the nearest healthcare facility, vegetation condition, topography, urban, and pollution. ​
-2. In general, the mapping patterns of food and non-food expenditure are similar, though with distinct details.​ 
+2. In general, the mapping patterns of food and non-food expenditure are similar, though with distinct details.​
 3. The northern and central of West Java regions tend to be more promising areas. Meanwhile, the southern of West Java region requires government attention.​
 
 ![granular mapping](./public/images/analysis-2.png)
@@ -48,50 +49,35 @@ To know consumer behaviour, we developed consumer behaviour modeling utilizing a
 
 We found that consumer behavior according to socioeconomic conditions can be clustered into four groups:
 
-1. Cluster 1
-   
-   NonFood Expenditure > Food Expenditure
-   
-   Well-Fulfilled Education, Health, and Economic Needs
+1. **Cluster 1**
 
-2. Cluster 2
-   
-   NonFood Expenditure > Food Expenditure
-   
-   Relatively Fulfilled Education, Health, and Economic Needs
+   NonFood Expenditure > Food Expenditure. Well-Fulfilled Education, Health, and Economic Needs
 
-3. Cluster 3
-   
-   Food Expenditure > NonFood Expenditure
-   
-   Relatively Fulfilled Education, Health, and Economic Needs
+2. **Cluster 2**
+
+   NonFood Expenditure > Food Expenditure. Relatively Fulfilled Education, Health, and Economic Needs
+
+3. **Cluster 3**
+
+   Food Expenditure > NonFood Expenditure. Relatively Fulfilled Education, Health, and Economic Needs
 
 4. Cluster 4
-   
-   Food Expenditure > NonFood Expenditure
-   
-   Relatively Underfulfilled Education, Health, and Economic Needs
 
+   Food Expenditure > NonFood Expenditure. Relatively Underfulfilled Education, Health, and Economic Needs
 
 Then, according to its geographical factors can be clustered into three groups:
 
 1. Cluster 1
-   
-   NonFood Expenditure > Food Expenditure
-   
-   Highest urbanization and pollution Lowest vegetation
-   
-2. Cluster 2
-   
-   NonFood Expenditure > Food Expenditure
-   
-   Higher vegetation, Lower urbanization and pollution
-3. Cluster 3
-   
-   Food Expenditure > NonFood Expenditure
-   
-   Higher vegetation, Lower urbanization and pollution
 
+   NonFood Expenditure > Food Expenditure. Highest urbanization and pollution Lowest vegetation
+
+2. Cluster 2
+
+   NonFood Expenditure > Food Expenditure. Higher vegetation, Lower urbanization and pollution
+
+3. Cluster 3
+
+   Food Expenditure > NonFood Expenditure. Higher vegetation, Lower urbanization and pollution
 
 ## Website Development
 
@@ -117,4 +103,11 @@ The challange to create this website is to serve big geospatial dataset (granula
 
 ### Basemaps
 
-Basemap in this project is from modified version from cartodb positron and esri satellite in [mapbox style](https://docs.mapbox.com/style-spec/guides/). 
+Basemap in this project is from modified version from cartodb positron and esri satellite in [mapbox style](https://docs.mapbox.com/style-spec/guides/).
+
+
+## Authors
+
+1. Muhammad Yasqi Imanda
+2. ​Salwa Rizqina Putri
+3. Jafar Husaini Aziz
