@@ -164,6 +164,9 @@ export const ExplainationContent = () => {
           <p>Lower urbanization and pollution</p>
         </li>
       </ul>
+      <p>
+        for full explanation of our project, check on our <a href="https://github.com/jfrAziz/jabar.pages.dev">GitHub</a>
+      </p>
     </div>
   );
 };
