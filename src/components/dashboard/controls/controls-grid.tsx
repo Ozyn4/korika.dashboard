@@ -24,6 +24,24 @@ import {
   IconSoccerField,
   IconToolsKitchen,
 } from "@tabler/icons-react";
+import{
+ FaMosquito,
+} from "react-icons/fa6"
+import{
+FaCloudRain ,
+FaTemperatureHigh ,
+} from "react-icons/fa"
+import{
+  WiHumidity ,
+} from "react-icons/wi"
+import { 
+  GiNoseSide,
+  GiLiver, 
+  GiStomach ,
+ } from "react-icons/gi";
+ import { PiCampfireBold } from "react-icons/pi";
+ import { GiPoisonGas } from "react-icons/gi";
+ import { TbBrandCarbon } from "react-icons/tb";
 import { ComponentProps } from "react";
 import { ToggleGroupCustomItem } from "./components";
 
@@ -50,14 +68,15 @@ export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
         ))}
       </div>
       <div className="flex items-center justify-between gap-2 px-1 py-1">
-        <Label className="font-bold text-xs">Zona 1</Label>
+        <Label className="font-bold text-xs">Tinggi</Label>
         <div className="relative flex flex-1 items-center justify-center">
           <Label className="z-[100] bg-background px-2 text-xs">
-            {active.fill}
+            {/* {active.fill} */}
+            Legenda
           </Label>
           <div className="absolute w-full border-foreground/50 border-b border-dashed" />
         </div>
-        <Label className="font-bold text-xs">Zona 7</Label>
+        <Label className="font-bold text-xs">Rendah</Label>
       </div>
     </div>
   );
@@ -65,8 +84,7 @@ export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
 
 export const GridDescription = () => (
   <p className="text-sm">
-    Granular socio-economic mapping 1km x 1km based on remote sensing and other
-    geospatial big data
+    Pemetaan resiko penyakit 5m x 5m menggunakan indikator lingkungan
   </p>
 );
 
@@ -76,18 +94,23 @@ export const GridSelector = () => {
   const FILL_TYPE_CONTROL = [
     {
       value: "FoodExpend",
-      label: "Food Expend",
-      icon: <IconToolsKitchen className="stroke-1" />,
+      label: "Resiko ISPA",
+      icon: <GiNoseSide/>,
     },
     {
-      value: "NonFoodExpend",
-      label: "Non Food Expend",
-      icon: <IconSchool className="stroke-1" />,
+      value: "FoodExpend",
+      label: "Resiko Hepatitis",
+      icon: <GiLiver/>,
     },
     {
-      value: "Compare",
-      label: "Compare Mode",
-      icon: <IconSoccerField className="stroke-1" />,
+      value: "FoodExpend",
+      label: "Resiko Diare",
+      icon: <GiStomach />,
+    },
+    {
+      value: "FoodExpend",
+      label: "Resiko Malaria",
+      icon: <FaMosquito  className="stroke-1" />,
     },
   ];
 
@@ -99,45 +122,45 @@ export const GridSelector = () => {
     },
     {
       value: "Elevation",
-      label: "Elevation",
-      icon: <IconMountain className="stroke-1" />,
+      label: "Curah Hujan",
+      icon: <FaCloudRain className="stroke-1" />,
     },
     {
       value: "Slope",
-      label: "Slope",
-      icon: <IconChartLine className="stroke-1" />,
+      label: "Suhu",
+      icon: <FaTemperatureHigh  className="stroke-1" />,
     },
     {
       value: "ES_Distance",
-      label: "Elementary Schools",
-      icon: <IconBackpack className="stroke-1" />,
+      label: "Kelembapan",
+      icon: <WiHumidity className="stroke-1" />,
     },
     {
       value: "JHS_Distance",
-      label: "Junior High Schools",
-      icon: <IconBooks className="stroke-1" />,
+      label: "CO",
+      icon: <TbBrandCarbon className="stroke-1" />,
     },
     {
       value: "SHS_Distance",
-      label: "Senior High Schools",
-      icon: <IconSchool className="stroke-1" />,
+      label: "SO2",
+      icon: <GiPoisonGas className="stroke-1" />,
     },
     {
       value: "Hospital_Distance",
-      label: "Hospital",
-      icon: <IconBuildingHospital className="stroke-1" />,
+      label: "NO2",
+      icon: <PiCampfireBold className="stroke-1" />,
     },
     {
-      value: "PublicHealth_Distance",
-      label: "PublicHealth",
-      icon: <IconAmbulance className="stroke-1" />,
+      value: "Hospital_Distance",
+      label: "Fasilitas Kesehatan",
+      icon: <IconBuildingHospital className="stroke-1" />,
     },
   ];
 
   return (
     <div className="flex flex-col gap-y-8 py-2">
       <div className="flex flex-col gap-4">
-        <Label className="font-bold">Fill</Label>
+        <Label className="font-bold">Resiko Penyakit</Label>
         <ToggleGroup
           type="single"
           value={active.fill}
@@ -162,7 +185,7 @@ export const GridSelector = () => {
       <div className="flex flex-col gap-4">
         <Tooltip>
           <TooltipTrigger asChild>
-            <Label className="font-bold">Elevated Maps</Label>
+            <Label className="font-bold"> Indikator Lingkungan</Label>
           </TooltipTrigger>
           <TooltipContent side="bottom" sideOffset={-10}>
             Use <code>ctrl</code> and scroll or finger to show the 3d maps

@@ -41,7 +41,7 @@ const ControlsContent = () => {
       >
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="grid">Grid</TabsTrigger>
-          <TabsTrigger value="cluster">Cluster</TabsTrigger>
+          {/* <TabsTrigger value="cluster">Cluster</TabsTrigger> */}
         </TabsList>
         <TabsContent value="grid">
           <div className="space-y-2 px-2">
@@ -105,7 +105,7 @@ export const Controls = () => {
             <ControlsContent />
           </div>
         </div>
-        <Button onClick={toggleExplanation}>Explain Me</Button>
+        {/* <Button onClick={toggleExplanation}>Explain Me</Button> */}
       </div>
     </div>
   ) : (
@@ -118,7 +118,7 @@ export const Controls = () => {
           <ControlsContent />
           <DrawerNestedRoot>
             <DrawerTrigger asChild>
-              <Button>Explain Me</Button>
+              {/* <Button>Explain Me</Button> */}
             </DrawerTrigger>
             <DrawerContent>
               <div className="m-auto max-w-sm">

@@ -16,7 +16,7 @@ export const SettingsControl = () => {
       <Label className="font-bold">Settings</Label>
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-row items-center justify-between">
-          <Label className="font-light text-sm">Tooltip</Label>
+          {/* <Label className="font-light text-sm">Tooltip</Label>
           <Switch
             checked={settings.tooltip}
             onCheckedChange={(v) =>
@@ -24,7 +24,7 @@ export const SettingsControl = () => {
                 settings: { ...s.settings, tooltip: v },
               }))
             }
-          />
+          /> */}
         </div>
         <div className="flex flex-row items-center justify-between">
           <Label className="font-light text-sm">Region Border</Label>
