@@ -27,7 +27,7 @@ export const useClusterLayer = ({ cluster, onHover }: ClusterLayerProps) => {
     queryKey: ["clusters"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch("/data/cluster.geojson").then((res) => res.json()),
+    queryFn: () => fetch(`${import.meta.env.BASE_URL}/data/cluster.geojson`).then((res) => res.json()),
   });
 
   return new GeoJsonLayer<{
