@@ -13,16 +13,8 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/utils/classnames";
 import {
-  IconAmbulance,
-  IconBackpack,
-  IconBooks,
   IconBuildingHospital,
-  IconChartLine,
   IconCircleOff,
-  IconMountain,
-  IconSchool,
-  IconSoccerField,
-  IconToolsKitchen,
 } from "@tabler/icons-react";
 import{
  FaMosquito,
@@ -46,7 +38,7 @@ import { ComponentProps } from "react";
 import { ToggleGroupCustomItem } from "./components";
 
 export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
-  const active = useDashboardStore((s) => s.active as GridAnalysisState);
+  // const active = useDashboardStore((s) => s.active as GridAnalysisState);
 
   return (
     <div className={cn("flex flex-col gap-2", className)} {...props}>
