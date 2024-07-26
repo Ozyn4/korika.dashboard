@@ -48,7 +48,7 @@ jobs:
         run: pnpm install
 
       - name: Build Project
-        run: pnpm run build
+        run: pnpm run build --base=/korika.dashboard
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
