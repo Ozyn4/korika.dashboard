@@ -3,13 +3,13 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://oojn4.github.io/peta.resiko.penyakit.dev/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "biome check --verbose --apply .",
-    "deploy": "vite preview"
+    "preview": "vite preview --port 8080"
   },
-  "homepage" : "https://oojn4.github.io/petaresikopenyakit.dev/",
   "dependencies": {
     "@deck.gl/core": "^9.0.17",
     "@deck.gl/layers": "^9.0.17",
@@ -50,6 +50,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
     "autoprefixer": "^10.4.19",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
