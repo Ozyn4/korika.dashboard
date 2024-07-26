@@ -9,7 +9,7 @@
     "lint": "biome check --verbose --apply .",
     "deploy": "vite preview"
   },
-  "homepage" : "https://oojn4.github.io/petaresikopenyakit.dev/",
+  "homepage" : "https://oojn4.github.io/peta.resiko.penyakit.dev/",
   "dependencies": {
     "@deck.gl/core": "^9.0.17",
     "@deck.gl/layers": "^9.0.17",
