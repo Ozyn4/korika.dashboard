@@ -10,7 +10,6 @@
     "lint": "biome check --verbose --apply .",
     "preview": "vite preview --port 8080"
   },
-  "homepage" : "https://oojn4.github.io/peta.resiko.penyakit.dev/",
   "dependencies": {
     "@deck.gl/core": "^9.0.17",
     "@deck.gl/layers": "^9.0.17",

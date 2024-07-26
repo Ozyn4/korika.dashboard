@@ -4,14 +4,14 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'peta.resiko.penyakit.dev',
+  base: '/',
   plugins: [react()],
   optimizeDeps: {
     exclude: ["parquet-wasm/esm/arrow2"],
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "/src"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });
