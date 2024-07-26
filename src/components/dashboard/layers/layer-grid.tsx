@@ -40,8 +40,8 @@ export const CompareGridLayer: FC<CompareGridLayerProps> = ({ elevation }) => {
       right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
       mapStyle={
         baseMap === "default"
-          ? "/maps/style.json"
-          : "/maps/style-satellite.json"
+          ? `${import.meta.env.BASE_URL}/maps/style.json`
+          : `${import.meta.env.BASE_URL}/maps/style-satellite.json`
       }
     />
   );

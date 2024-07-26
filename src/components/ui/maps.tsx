@@ -29,7 +29,7 @@ export const SingleMaps: FC<
 > = ({ children, style, ...props }) => (
   <MapLibre
     attributionControl={false}
-    mapStyle="/maps/style.json"
+    mapStyle={`${import.meta.env.BASE_URL}/maps/style.json`}
     style={{
       top: 0,
       left: 0,
