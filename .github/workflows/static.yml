@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install dependencies
+      - name: Build Project
         run: pnpm run build
 
       - name: Setup Pages
