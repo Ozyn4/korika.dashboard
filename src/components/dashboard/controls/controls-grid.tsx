@@ -60,15 +60,15 @@ export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
         ))}
       </div>
       <div className="flex items-center justify-between gap-2 px-1 py-1">
-        <Label className="font-bold text-xs">Tinggi</Label>
+        <Label className="font-bold text-xs">High</Label>
         <div className="relative flex flex-1 items-center justify-center">
           <Label className="z-[100] bg-background px-2 text-xs">
             {/* {active.fill} */}
-            Legenda
+            Legend
           </Label>
           <div className="absolute w-full border-foreground/50 border-b border-dashed" />
         </div>
-        <Label className="font-bold text-xs">Rendah</Label>
+        <Label className="font-bold text-xs">Low</Label>
       </div>
     </div>
   );
