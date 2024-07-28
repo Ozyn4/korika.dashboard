@@ -76,7 +76,7 @@ export const GridSwatch = ({ className, ...props }: ComponentProps<"div">) => {
 
 export const GridDescription = () => (
   <p className="text-sm">
-    Pemetaan resiko penyakit 5m x 5m menggunakan indikator lingkungan
+    Wellbeing Risk Monitoring Using Meteorological, Air Pollution, and Healthcare Infrastructure
   </p>
 );
 
@@ -86,22 +86,22 @@ export const GridSelector = () => {
   const FILL_TYPE_CONTROL = [
     {
       value: "FoodExpend",
-      label: "Resiko ISPA",
+      label: "ISPA",
       icon: <GiNoseSide/>,
     },
     {
       value: "FoodExpend",
-      label: "Resiko Hepatitis",
+      label: "Hepatitis",
       icon: <GiLiver/>,
     },
     {
       value: "FoodExpend",
-      label: "Resiko Diare",
+      label: "Diarrhea",
       icon: <GiStomach />,
     },
     {
       value: "FoodExpend",
-      label: "Resiko Malaria",
+      label: "Malaria",
       icon: <FaMosquito  className="stroke-1" />,
     },
   ];
@@ -114,17 +114,17 @@ export const GridSelector = () => {
     },
     {
       value: "Elevation",
-      label: "Curah Hujan",
+      label: "Precitipation",
       icon: <FaCloudRain className="stroke-1" />,
     },
     {
       value: "Slope",
-      label: "Suhu",
+      label: "Temperature",
       icon: <FaTemperatureHigh  className="stroke-1" />,
     },
     {
       value: "ES_Distance",
-      label: "Kelembapan",
+      label: "Humidity",
       icon: <WiHumidity className="stroke-1" />,
     },
     {
@@ -144,7 +144,7 @@ export const GridSelector = () => {
     },
     {
       value: "Hospital_Distance",
-      label: "Fasilitas Kesehatan",
+      label: "Healthcare Infrastructure",
       icon: <IconBuildingHospital className="stroke-1" />,
     },
   ];
@@ -152,7 +152,7 @@ export const GridSelector = () => {
   return (
     <div className="flex flex-col gap-y-8 py-2">
       <div className="flex flex-col gap-4">
-        <Label className="font-bold">Resiko Penyakit</Label>
+        <Label className="font-bold">Kind of Diseases</Label>
         <ToggleGroup
           type="single"
           value={active.fill}
@@ -177,7 +177,7 @@ export const GridSelector = () => {
       <div className="flex flex-col gap-4">
         <Tooltip>
           <TooltipTrigger asChild>
-            <Label className="font-bold"> Indikator Lingkungan</Label>
+            <Label className="font-bold">Indicators</Label>
           </TooltipTrigger>
           <TooltipContent side="bottom" sideOffset={-10}>
             Use <code>ctrl</code> and scroll or finger to show the 3d maps
