@@ -85,24 +85,19 @@ export const GridSelector = () => {
 
   const FILL_TYPE_CONTROL = [
     {
-      value: "FoodExpend",
+      value: "ISPA",
       label: "ISPA",
       icon: <GiNoseSide/>,
     },
     {
-      value: "FoodExpend",
+      value: "Hepatitis",
       label: "Hepatitis",
       icon: <GiLiver/>,
     },
     {
-      value: "FoodExpend",
+      value: "Diarrhea",
       label: "Diarrhea",
       icon: <GiStomach />,
-    },
-    {
-      value: "FoodExpend",
-      label: "Malaria",
-      icon: <FaMosquito  className="stroke-1" />,
     },
   ];
 
@@ -156,7 +151,7 @@ export const GridSelector = () => {
         <ToggleGroup
           type="single"
           value={active.fill}
-          defaultValue="FoodExpend"
+          defaultValue="ISPA"
           className="grid grid-cols-3"
           onValueChange={(value) => {
             if (!value) return;

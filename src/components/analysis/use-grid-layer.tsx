@@ -4,18 +4,14 @@ import { tableFromIPC } from "apache-arrow";
 import { readParquet } from "parquet-wasm/esm/arrow2";
 import { GRID_ZONE_COLORS } from "./color";
 
-export type GridFillType = "FoodExpend" | "NonFoodExpend";
+export type GridFillType = "ISPA" | "Diarrhea" | "Hepatitis";
 
 export type GridElevation = keyof typeof ELEVATION_SCALE;
 
 export type GridZone =
-  | "Zona 1"
-  | "Zona 2"
-  | "Zona 3"
-  | "Zona 4"
-  | "Zona 5"
-  | "Zona 6"
-  | "Zona 7";
+  | "Rendah"
+  | "Sedang"
+  | "Tinggi";
 
 export const ELEVATION_SCALE = {
   Slope: 250,
@@ -39,7 +35,7 @@ interface GridLayerProps {
 }
 
 export const useGridLayer = ({
-  fill = "FoodExpend",
+  fill = "ISPA",
   elevation,
   onHover,
 }: GridLayerProps) => {

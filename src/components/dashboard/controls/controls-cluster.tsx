@@ -207,7 +207,7 @@ export const ClusterSelector = () => {
         <ToggleGroup
           type="single"
           value={active.clusters}
-          defaultValue="FoodExpend"
+          defaultValue="ISPA"
           className="grid grid-cols-2"
           onValueChange={(value) => {
             if (!value) return;
