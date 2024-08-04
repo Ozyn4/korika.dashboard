@@ -9,8 +9,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { forwardRef, useState } from "react";
 import {
-  ClusterRadarChart,
-  ClusterSelector,
   ClusterSwatch,
 } from "./controls-cluster";
 import { GridDescription, GridSelector, GridSwatch } from "./controls-grid";
@@ -49,13 +47,13 @@ const ControlsContent = () => {
             <GridSelector />
           </div>
         </TabsContent>
-        <TabsContent value="cluster">
+        {/* <TabsContent value="cluster">
           <div className="space-y-2 px-2">
             <ClusterSwatch />
             <ClusterSelector />
             <ClusterRadarChart />
           </div>
-        </TabsContent>
+        </TabsContent> */}
       </Tabs>
       <SettingsControl />
     </div>
