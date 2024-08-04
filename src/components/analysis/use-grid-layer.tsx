@@ -47,7 +47,7 @@ export const useGridLayer = ({
     queryKey: ["grid"],
     gcTime: Infinity,
     staleTime: Infinity,
-    queryFn: () => fetch(`${import.meta.env.BASE_URL}/data/grid.parquet`).then((res) => res.arrayBuffer()),
+    queryFn: () => fetch(`${import.meta.env.BASE_URL}/data/grid_baru.parquet`).then((res) => res.arrayBuffer()),
   });
 
   if (!data) return;
