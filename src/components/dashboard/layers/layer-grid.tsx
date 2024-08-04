@@ -36,8 +36,8 @@ export const CompareGridLayer: FC<CompareGridLayerProps> = ({ elevation }) => {
   return (
     <SplittedMaps
       viewState={INITIAL_VIEW_STATE}
-      left={<GridLayer fill="ISPA" elevation={elevation} />}
-      right={<GridLayer fill="Hepatitis" elevation={elevation} />}
+      left={<GridLayer fill="FoodExpend" elevation={elevation} />}
+      right={<GridLayer fill="NonFoodExpend" elevation={elevation} />}
       mapStyle={
         baseMap === "default"
           ? `${import.meta.env.BASE_URL}/maps/style.json`
